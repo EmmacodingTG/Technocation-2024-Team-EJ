@@ -8,7 +8,7 @@ final colorcontroller = TextEditingController();
 final MapController mapController = MapController();
 @override
 void dispose(){
-  locationController.dispose();
+  locationContoller.dispose();
 }
 
 class HomePage extends StatefulWidget {
