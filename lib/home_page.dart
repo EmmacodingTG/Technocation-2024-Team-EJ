@@ -112,74 +112,9 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: ElevatedButton.icon(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return SizedBox(
-                      height: 300,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: TextField(
-                              controller: addsquarecontroller,
-                              decoration: InputDecoration(
-                                hintText: 'Location',
-                                border: const OutlineInputBorder(),
-                                suffixIcon: IconButton(
-                                  icon: const Icon(Icons.add),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 30),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 30),
-                              child: TextField(
-                                controller: addnumber,
-                                decoration: InputDecoration(
-                                  hintText: '# Of Density',
-                                  border: const OutlineInputBorder(),
-                                  suffixIcon: IconButton(
-                                    icon: const Icon(Icons.add),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: Row(
-                              children: [
-                                SizedBox(width: 80,),
-                                ElevatedButton(
-                                    child: const Text('ADD'), onPressed: () {}),
-                                     SizedBox(width:50,),
-                                ElevatedButton(
-                                    child: const Text('Cancel'),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    }),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-              label: const Text('ADD SQUARE'),
-              icon: const Icon(Icons.add),
-            ),
-          ),
+         
+            
+          
           ElevatedButton.icon(
             onPressed: () => showDialog<String>(
               context: context,
