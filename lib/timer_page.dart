@@ -1,5 +1,5 @@
 import 'dart:ffi';
-
+import 'package:litter_app/global_variable.dart'; 
 import 'package:flutter/material.dart';
 import 'package:litter_app/after_picture.dart';
 
@@ -16,20 +16,23 @@ class _TimerPageState extends State<TimerPage> {
   DateTime _dateTime = DateTime.now();
 
 
-  void _showDatePicker() {
-    showDatePicker(
-    
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2030),
-    ).then((value) {
+ 
+void _showDatePicker() {
+  showDatePicker(
+    context: context,
+    initialDate: DateTime(2024, 3, 15),
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2025),
+  ).then((pickedDate) {
+    if (pickedDate != null) {
       setState(() {
-        _dateTime = value!;
-       
+        _dateTime = pickedDate; 
+        selectedDate = pickedDate; 
       });
-    });
-  }
+    }
+  });
+}
+
 
 
   @override
@@ -82,19 +85,19 @@ class _TimerPageState extends State<TimerPage> {
               ),
             ],
           ),
-          const Row(
-            children: [
-              SizedBox(width: 30),
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: Text('Somewhere in the universe',
-                style:  TextStyle(
-                    fontSize: 15,
-                    fontStyle: FontStyle.italic,
-                  ),),
+            Padding(
+              padding: const EdgeInsets.only(left:30),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter copied address',
+                  border:  OutlineInputBorder(),
+                ),
+                controller: addressTextEditingController,
               ),
-            ],
-          ),
+            ),
+              
+            
+          
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: ElevatedButton.icon(
@@ -140,7 +143,7 @@ class _TimerPageState extends State<TimerPage> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AfterPicturePage(),
+                    builder: (context) => AfterPicturePage(),
                   ),
                 ),
                 label: const Text('NEXT'),

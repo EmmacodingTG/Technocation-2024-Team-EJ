@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-
-import 'package:litter_app/image_input.dart';
 import 'package:litter_app/timer_page.dart';
-
-
+import 'global_variable.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:share_plus/share_plus.dart';
 
 class BeforePicturePage extends StatefulWidget {
   const BeforePicturePage({super.key});
@@ -12,62 +12,73 @@ class BeforePicturePage extends StatefulWidget {
   @override
   State<BeforePicturePage> createState() => _BeforePicturePageState();
 }
-
 class _BeforePicturePageState extends State<BeforePicturePage> {
+  
   @override
+void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => TimerPage()),
+  );
+}
+
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(146, 21, 125, 49),
-        title: const Text('Step 1: Add Picture'),
+        title: const Text('Step 3: Add Picture'),
       ),
       body: Column(
         children: [
-           
           const Center(
             child: Padding(
               padding: EdgeInsets.only(top: 50),
               child: Text(
-                'BEFORE PHOTO:'
-              ,
+                'BEFORE PHOTO:',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
-                   decoration: TextDecoration.underline,
-                     decorationColor: Color.fromARGB(146, 21, 125, 49),
-                        decorationThickness: 2,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color.fromARGB(146, 21, 125, 49),
+                  decorationThickness: 2,
                 ),
               ),
             ),
           ),
-         const Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 8),
           ),
-         const  Text(
-            'Click box to retake picture',
-            style: TextStyle(
-              color: Color.fromARGB(221, 255, 255, 255),
-              fontSize: 15,
-              fontStyle: FontStyle.italic,
-              
-            ),
+          Row(
+            children: [
+            SizedBox(width: 75,),
+             Text(contactemail),
+             SizedBox(width: 15,),
+              InkWell(
+                onTap: () {
+                  FlutterClipboard.copy(contactemail);
+                },
+                child: const Icon(Icons.copy),
+              ),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.all(25),
-            child: ImageInput(),
-          ),
+          IconButton(
+              icon: const Icon(Icons.photo_camera),
+              iconSize: 100,
+              onPressed: () async {
+                final image =
+                    await ImagePicker().pickImage(source: ImageSource.camera);
+                if (image == null) return;
+                await Share.shareFiles([image.path],
+                    subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+              }),
+     
           ElevatedButton.icon(
-              onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TimerPage(),
-                    ),
-                  ),
+              onPressed: ()=>navigateToTimerPage(context),
             label: const Text('NEXT'),
             icon: const Icon(Icons.done),
           ),
-        ],
+    ]
+        ,
       ),
     );
   }

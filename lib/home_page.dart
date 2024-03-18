@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:litter_app/before_picture_page.dart';
-
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-
-final colorcontroller = TextEditingController();
-final MapController mapController = MapController();
-@override
-void dispose(){
-  locationContoller.dispose();
-}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,14 +12,19 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-final myController = TextEditingController();
-double _currentValue = 15;
-var colorbox;
-
 class _HomePageState extends State<HomePage> {
-  List<String> items = ['Toronto', 'Waterloo'];
-  String? selectedItem = 'Toronto';
-  TextEditingController _locationController = TextEditingController();
+
+  final TextEditingController locationController = TextEditingController();
+  final MapController mapController = MapController();
+  final TextEditingController addsquarecontroller = TextEditingController();
+  final TextEditingController addnumber = TextEditingController();
+
+  @override
+  void dispose() {
+    locationController.dispose();
+    mapController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,56 +34,59 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-            height: 128,
+            height: 144,
             decoration:
                 const BoxDecoration(color: Color.fromARGB(146, 21, 125, 49)),
             child: Column(
               children: [
                 Row(
                   children: [
-                    const SizedBox(
-                      width: 15,
+                    const SizedBox(width: 15),
+                  
+           IconButton(
+            icon: Icon(Icons.info),iconSize: 30, tooltip: 'Enter Provinces, Cities, Parks, or Postal Codes',
+            onPressed: () {
+              
+            },
+           ),
+                    Expanded(
+                      child: TextField(
+                        controller: locationController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter a location',
+                       
+
+                          
+                          
+                          border: const OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.search),
+                            
+                            onPressed: () {
+                              String location = locationController.text;
+                              searchLocation(location);
+                            },
+                          ),
+                        ),
+                      ),
                     ),
-                    DropdownButton<String>(
-                        value: selectedItem,
-                        items: items
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(item,
-                                      style: const TextStyle(fontSize: 24)),
-                                ))
-                            .toList(),
-                        onChanged: (item) =>
-                            setState(() => selectedItem = item)),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 5),
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      label: const Text('Search Location'),
-                      icon: const Icon(Icons.search),
-                    ),
+                     InkWell(
+                onTap: () {
+                  FlutterClipboard.copy(locationController.text);
+                },
+                child: const Icon(Icons.copy),
+              ),
                   ],
                 ),
               ],
             ),
           ),
-            TextField(
-                                  decoration: InputDecoration(
-                                      labelText: 'Latitude'),
-                                 ),
-                                   TextField(
-                                  decoration: InputDecoration(
-                                      labelText: 'Longitude'),
-                                 ),
           Flexible(
             flex: 500,
             child: FlutterMap(
-              options:
-                  const MapOptions(center: LatLng(43.6426, -79.3871), zoom: 15),
+              mapController: mapController,
+              options: const MapOptions(
+                  initialCenter: LatLng(43, -79), initialZoom: 10),
               children: [
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -94,16 +96,17 @@ class _HomePageState extends State<HomePage> {
                   polygonCulling: false,
                   polygons: [
                     Polygon(
-                        points: [
-                          LatLng(36.95, -9.5),
-                          LatLng(42.25, -9.5),
-                          LatLng(42.25, -6.2),
-                          LatLng(36.95, -6.2),
-                        ],
-                        color: Colors.blue.withOpacity(0.5),
-                        borderStrokeWidth: 2,
-                        borderColor: Colors.blue,
-                        isFilled: true),
+                      points: [
+                        const LatLng(36.95, -9.5),
+                        const LatLng(42.25, -9.5),
+                        const LatLng(42.25, -6.2),
+                        const LatLng(36.95, -6.2),
+                      ],
+                      color: Colors.blue.withOpacity(0.5),
+                      borderStrokeWidth: 2,
+                      borderColor: Colors.blue,
+                      isFilled: true,
+                    ),
                   ],
                 ),
               ],
@@ -114,110 +117,64 @@ class _HomePageState extends State<HomePage> {
             child: ElevatedButton.icon(
               onPressed: () {
                 showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                          height: 400,
-                          child: Column(
-                            children: [
-                               TextField(
-                                  decoration: InputDecoration(
-                                      labelText: 'Latitude'),
-                                 ),
-                                   TextField(
-                                  decoration: InputDecoration(
-                                      labelText: 'Longitude'),
-                                 ),
-                              TextField(
-                                  decoration: InputDecoration(
-                                      labelText: 'Litter density'),
-                                      controller: colorcontroller,
-                                  ),
-                              ElevatedButton(
-                                child: const Text('Done'),
-                                onPressed: () {
-                                  if ((colorcontroller.text) == '1') {
-                                    Navigator.pop(context);
-                                    MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(43.6426, -79.38710),
-                                          width: 80,
-                                          height: 80,
-                                          child: Image.asset(
-                                            'assets/images/square.png',
-                                            width: 250,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                    if ((colorcontroller.text) == '2') {
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                            point: LatLng(43.6426, -79.3871),
-                                            width: 80,
-                                            height: 80,
-                                            child: Image.asset(
-                                              'assets/images/square (1).png',
-                                              width: 250,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                    if ((colorcontroller.text) == '3') {
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                            point: LatLng(43.6426, -79.3871),
-                                            width: 80,
-                                            height: 80,
-                                            child: Image.asset(
-                                              'assets/images/square (2).png',
-                                              width: 250,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                    if ((colorcontroller.text) == '4') {
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                            point: LatLng(43.6426, -79.3871),
-                                            width: 80,
-                                            height: 80,
-                                            child: Image.asset(
-                                              'assets/images/square (3).png',
-                                              width: 250,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                    if ((colorcontroller.text) == '5') {
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                            point: LatLng(43.6426, -79.3871),
-                                            width: 80,
-                                            height: 80,
-                                            child: Image.asset(
-                                              'assets/images/square (4).png',
-                                              width: 250,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                  }
-                                  ;
-                                },
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SizedBox(
+                      height: 300,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: TextField(
+                              controller: addsquarecontroller,
+                              decoration: InputDecoration(
+                                hintText: 'Location',
+                                border: const OutlineInputBorder(),
+                                suffixIcon: IconButton(
+                                  icon: const Icon(Icons.add),
+                                  onPressed: () {},
+                                ),
                               ),
-                            ],
-                          ));
-                    });
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 30),
+                              child: TextField(
+                                controller: addnumber,
+                                decoration: InputDecoration(
+                                  hintText: '# Of Density',
+                                  border: const OutlineInputBorder(),
+                                  suffixIcon: IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: Row(
+                              children: [
+                                SizedBox(width: 80,),
+                                ElevatedButton(
+                                    child: const Text('ADD'), onPressed: () {}),
+                                     SizedBox(width:50,),
+                                ElevatedButton(
+                                    child: const Text('Cancel'),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
               label: const Text('ADD SQUARE'),
               icon: const Icon(Icons.add),
@@ -308,5 +265,32 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  void searchLocation(String input) async {
+    try {
+      List<Location> locations = await locationFromAddress(input);
+      if (locations.isNotEmpty) {
+        Location location = locations.first;
+        setState(
+          () {
+            mapController.move(
+                LatLng(location.latitude, location.longitude), 18.0);
+          },
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Location not found'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error searching for location: $e'),
+        ),
+      );
+    }
   }
 }

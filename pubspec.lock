@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  clipboard:
+    dependency: "direct main"
+    description:
+      name: clipboard
+      sha256: "2ec38f0e59878008ceca0ab122e4bfde98847f88ef0f83331362ba4521f565a9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.3"
   clock:
     dependency: transitive
     description:
@@ -89,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  file:
+    dependency: transitive
+    description:
+      name: file
+      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   file_selector_linux:
     dependency: transitive
     description:
@@ -182,6 +198,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_email_sender:
+    dependency: "direct main"
+    description:
+      name: flutter_email_sender
+      sha256: "5001e9158f91a8799140fb30a11ad89cd587244f30b4f848d87085985c49b60f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -265,7 +289,7 @@ packages:
     source: hosted
     version: "5.0.6"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
@@ -465,7 +489,7 @@ packages:
     source: hosted
     version: "1.9.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: b27217933eeeba8ff24845c34003b003b2b22151de3c908d0e679e8fe1aa078b
@@ -552,6 +576,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.1"
+  share_plus:
+    dependency: "direct main"
+    description:
+      name: share_plus
+      sha256: "3ef39599b00059db0990ca2e30fca0a29d8b37aae924d60063f8e0184cf20900"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.2.2"
+  share_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: share_plus_platform_interface
+      sha256: df08bc3a07d01f5ea47b45d03ffcba1fa9cd5370fb44b3f38c70e42cced0f956
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -605,6 +645,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: eac3cbf2278fa4993d9b97d92d050973025deebfbff970109843640dc770888c
+      url: "https://pub.dev"
+    source: hosted
+    version: "25.1.35"
+  syncfusion_flutter_maps:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_maps
+      sha256: "6a386067f08e6b72992486bb96b86002a27751d90f2e120fc376c3b5c777ae57"
+      url: "https://pub.dev"
+    source: hosted
+    version: "25.1.35"
   term_glyph:
     dependency: transitive
     description:

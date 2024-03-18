@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/first_page.dart';
+
 import 'package:url_launcher/url_launcher.dart';
+import 'package:litter_app/global_variable.dart';
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -10,21 +12,57 @@ class SendPage extends StatefulWidget {
   State<SendPage> createState() => _SendPageState();
 }
 
-
-
 class _SendPageState extends State<SendPage> {
   String? encodeQueryParameters(Map<String, String> params) {
-  return params.entries
-      .map((MapEntry<String, String> e) =>
-          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-      .join('&');
-}
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
 
   @override
   Widget build(BuildContext context) {
+    // create global variable of timer and contacts ( put contacts email into the recipitent's email )
+    
     var subject = 'Confirmation of litter cleaning';
-   var message = "Hello, this is a message about ________'s cleaning session.Address:___ \n\nCleaning date:__/__/__\n\n Total Cleaning Time __:__ \n\nBelow are the images of this volunteer activity:(user please input image)\n \n \n\n\n\nPlease confirm this volunteer.\n\nThank you!\n\n From: LITTER APP";
+    var message =
+        "Hello, this is a message about________'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
+    var message2 = 'Address:';
+    var message3 = 'Cleaning date:  ';
+    var message4 = 'Total Cleaning Time:  ';
+    var message5 =
+        'Images of this volunteer activity was sent previously within two seperate emails. Please check your inbox!)';
+    var message6 =
+        'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
+    var Enter = '\n\n';
 
+    String dateTimeString = selectedDate.toString();
+
+    String messageperiode = message + " " + Enter;
+
+    String fullmessage = messageperiode +
+        " " +
+        message2 +
+        " " +
+        addressTextEditingController.text +
+        " " +
+        Enter +
+        " " +
+        message3 +
+        "" +
+        dateTimeString +
+        " " +
+        Enter +
+        " " +
+        message4 +
+        " " +
+        Enter +
+        " " +
+        message5 +
+        " " +
+        Enter +
+        " " +
+        message6;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -50,18 +88,16 @@ class _SendPageState extends State<SendPage> {
               padding: const EdgeInsets.only(top: 50),
               child: ElevatedButton.icon(
                 onPressed: () {
-                 Uri uri = Uri( 
-                  scheme:'mailto',
-                  path:'',
-                  query:encodeQueryParameters(<String,String>{
-                    'subject': subject,
-                    'body': message,
-                }),
-
-                );
-                launchUrl(uri);
+                  Uri uri = Uri(
+                    scheme: 'mailto',
+                    path: contactemail,
+                    query: encodeQueryParameters(<String, String>{
+                      'subject': subject,
+                      'body': fullmessage 
+                    }),
+                  );
+                  launchUrl(uri);
                 },
-  
                 label: const Text('Hand In Report'),
                 icon: const Icon(Icons.send),
               ),
