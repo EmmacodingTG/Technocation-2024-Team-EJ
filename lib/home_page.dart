@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:litter_app/before_picture_page.dart';
+
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:litter_app/findlocation_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -115,87 +116,19 @@ class _HomePageState extends State<HomePage> {
          
             
           
-          ElevatedButton.icon(
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => Dialog(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              const SizedBox(width: 60),
-                              Image.asset(
-                                'assets/images/alert.png',
-                                width: 20,
-                              ),
-                              const SizedBox(width: 5),
-                              const Text(
-                                'DISCLAIMER',
-                                style: TextStyle(
-                                  color: Color.fromARGB(221, 255, 255, 255),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Image.asset(
-                                'assets/images/alert.png',
-                                width: 20,
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            'Our app is not responsible for any incidents or injuries that may occur during clean ups. Please wear protective equipment before cleaning.',
-                            style: TextStyle(
-                              color: Color.fromARGB(221, 255, 255, 255),
-                              fontSize: 15,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 30,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Close'),
-                          ),
-                          const SizedBox(
-                            width: 90,
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BeforePicturePage(),
-                              ),
-                            ),
-                            child: const Text('Continue'),
-                          ),
-                          const SizedBox(
-                            width: 30,
-                          ),
-                        ],
-                      ),
-                    ],
+          Column(
+            children: [ElevatedButton.icon(
+              onPressed: ()  => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FindLocationPage(),
                   ),
                 ),
-              ),
+              label: const Text('Find a Park'),
+              icon: const Icon(Icons.location_on),
             ),
-            label: const Text('Clean'),
-            icon: const Icon(Icons.add),
+             
+            ],
           ),
         ],
       ),
