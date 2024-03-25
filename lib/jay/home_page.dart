@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:litter_app/before_picture_page.dart';
+import 'package:litter_app/jay/before_picture_page.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -42,22 +42,17 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     const SizedBox(width: 15),
-                  
-           IconButton(
-            icon: Icon(Icons.info),iconSize: 30, tooltip: 'Enter Provinces, Cities, Parks, or Postal Codes',
-            onPressed: () {
-              
-            },
-           ),
+                    IconButton(
+                      icon: Icon(Icons.info),
+                      iconSize: 30,
+                      tooltip: 'Enter Provinces, Cities, Parks, or Postal Codes',
+                      onPressed: () {},
+                    ),
                     Expanded(
                       child: TextField(
                         controller: locationController,
                         decoration: InputDecoration(
                           hintText: 'Enter a location',
-                       
-
-                          
-                          
                           border: const OutlineInputBorder(),
                           suffixIcon: IconButton(
                             icon: const Icon(Icons.search),
@@ -71,11 +66,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                      InkWell(
-                onTap: () {
-                  FlutterClipboard.copy(locationController.text);
-                },
-                child: const Icon(Icons.copy),
-              ),
+                       onTap: () {
+                         FlutterClipboard.copy(locationController.text);
+                         },
+                       child: const Icon(Icons.copy),
+                     ),
                   ],
                 ),
               ],
@@ -85,8 +80,7 @@ class _HomePageState extends State<HomePage> {
             flex: 500,
             child: FlutterMap(
               mapController: mapController,
-              options: const MapOptions(
-                  initialCenter: LatLng(43, -79), initialZoom: 10),
+              options: const MapOptions(initialCenter: LatLng(0, 0), initialZoom: 10),
               children: [
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',

@@ -1,7 +1,6 @@
-import 'dart:ffi';
-import 'package:litter_app/global_variable.dart'; 
+import 'package:litter_app/jay/global_variable.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/after_picture.dart';
+import 'package:litter_app/jay/after_picture.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key});
@@ -12,11 +11,8 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> {
 
-
   DateTime _dateTime = DateTime.now();
 
-
- 
 void _showDatePicker() {
   showDatePicker(
     context: context,

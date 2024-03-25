@@ -1,5 +1,6 @@
+/*
 import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
+import 'package:litter_app/navigator_bar.dart';
 
 
 class InfoPage extends StatelessWidget {
@@ -172,7 +173,7 @@ class InfoPage extends StatelessWidget {
                 width: 15,
               ),
               Image.asset('assets/images/button.png', width: 20),
-             
+
             ],
           ), const Padding(padding: EdgeInsets.only(top:10)),
           Center(
@@ -309,7 +310,7 @@ class InfoPage extends StatelessWidget {
             ),
           ),
            Row(
-            
+
              children: [
               const SizedBox(
                 width: 30,
@@ -342,9 +343,11 @@ class InfoPage extends StatelessWidget {
           ),
              ],
            ),
-           
+
         ],
       ),
     );
   }
 }
+
+ */

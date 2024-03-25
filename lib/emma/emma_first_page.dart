@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 import 'package:litter_app/home_page.dart';
@@ -23,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
     const HomePage(),
     const RecordsPage(),
     const InfoPage(),
-    
+
   ];
 
   @override
@@ -37,9 +38,11 @@ class _FirstPageState extends State<FirstPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.schedule), label: 'Records'),
           BottomNavigationBarItem(icon: Icon(Icons.info), label: 'info'),
-         
+
         ],
       ),
     );
   }
 }
+
+ */

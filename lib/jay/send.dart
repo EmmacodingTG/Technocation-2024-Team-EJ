@@ -1,9 +1,12 @@
+// this page is used in the community sponsor page
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
+import 'package:litter_app/jay/navigator_bar.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-import 'package:litter_app/global_variable.dart';
+import 'package:litter_app/jay/global_variable.dart';
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -63,6 +66,7 @@ class _SendPageState extends State<SendPage> {
         Enter +
         " " +
         message6;
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -117,7 +121,7 @@ class _SendPageState extends State<SendPage> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const FirstPage(),
+                            builder: (context) => const NavigatorBar(),
                           ),
                         ),
                       ),

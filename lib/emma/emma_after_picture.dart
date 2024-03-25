@@ -1,9 +1,10 @@
+/*
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:litter_app/global_variable.dart';
+import 'package:litter_app/jay/global_variable.dart';
 import 'package:litter_app/update_page.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
@@ -82,3 +83,5 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
     );
   }
 }
+
+ */

@@ -1,3 +1,6 @@
+// this page was combined into the community sponsor page
+
+
 import 'package:flutter/material.dart';
 
 var contactemail = 'emmachen0216@gmail.com'; // add global textfield from contacts page

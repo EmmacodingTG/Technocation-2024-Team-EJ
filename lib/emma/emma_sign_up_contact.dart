@@ -1,15 +1,15 @@
-import 'package:litter_app/login_page.dart';
-import 'package:litter_app/signup_contact_page.dart';
+/*
+import 'package:litter_app/location_select.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class SignupContactPage extends StatefulWidget {
+  const SignupContactPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<SignupContactPage> createState() => _SignupContactPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignupContactPageState extends State<SignupContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +21,33 @@ class _SignupPageState extends State<SignupPage> {
             'assets/images/user-interface.png',
             width: 25,
           ),
-          Container(padding: const EdgeInsets.all(8.0), child: const Text('Sign Up')),
+          Container(padding: const EdgeInsets.all(8.0), child: const Text('Add Contacts')),
         ]),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const Padding(
+            padding: EdgeInsets.all(
+              15.0,
+            ),
+          ),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [],
+            children: [
+              Text(
+                'Please add contacts of your teacher',
+                style: TextStyle(
+                  color: Color.fromARGB(221, 255, 255, 255),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                   decoration: TextDecoration.underline,
+                   decorationColor: Color.fromARGB(255, 255, 255, 255),
+                ),
+              ),
+            ],
           ),
           const Padding(
             padding: EdgeInsets.all(
@@ -38,7 +55,7 @@ class _SignupPageState extends State<SignupPage> {
             ),
             child: TextField(
               decoration: InputDecoration(
-                label: Text('Username'),
+                label: Text('Name'),
               ),
             ),
           ),
@@ -48,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
             ),
             child: TextField(
               decoration: InputDecoration(
-                label: Text('Password'),
+                label: Text('Email'),
               ),
             ),
           ),
@@ -58,32 +75,7 @@ class _SignupPageState extends State<SignupPage> {
             ),
             child: TextField(
               decoration: InputDecoration(
-                label: Text('Confirm password'),
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LoginPage(),
-              ),
-            ),
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.only(top: 5),
-              foregroundColor: const Color.fromARGB(221, 0, 0, 0),
-              textStyle: const TextStyle(
-                fontSize: 20,
-              ),
-            ),
-            child: const Text(
-              'Already have an account? Login!',
-              style: TextStyle(
-                color: Color.fromARGB(221, 255, 255, 255),
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                decoration: TextDecoration.underline,
+                label: Text('Phone Number'),
               ),
             ),
           ),
@@ -97,8 +89,8 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: <Color>[
-                          Color.fromARGB(58, 17, 223, 99),
-                          Color.fromARGB(58, 17, 223, 99)
+                          Color.fromARGB(115, 17, 223, 99),
+                          Color.fromARGB(115, 17, 223, 99)
                         ],
                       ),
                     ),
@@ -108,7 +100,7 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignupContactPage(),
+                      builder: (context) => const SignUpMapPage(),
                     ),
                   ),
                   style: TextButton.styleFrom(
@@ -118,7 +110,7 @@ class _SignupPageState extends State<SignupPage> {
                       fontSize: 20,
                     ),
                   ),
-                  child: const Text('Sign Up!'),
+                  child: const Text('DONE!'),
                 ),
               ],
             ),
@@ -128,3 +120,5 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 }
+
+ */

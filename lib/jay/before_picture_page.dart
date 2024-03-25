@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:litter_app/timer_page.dart';
+import 'package:litter_app/jay/stopwatch_page.dart';
+import 'timer_page.dart';
 import 'global_variable.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:clipboard/clipboard.dart';
@@ -73,7 +73,12 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
               }),
      
           ElevatedButton.icon(
-              onPressed: ()=>navigateToTimerPage(context),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StopwatchPage())
+              );
+            },
             label: const Text('NEXT'),
             icon: const Icon(Icons.done),
           ),

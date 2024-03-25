@@ -1,4 +1,5 @@
-import 'package:litter_app/first_page.dart';
+/*
+import 'package:litter_app/navigator_bar.dart';
 
 import 'package:flutter/material.dart';
 var torontoorwaterloo = 'HI';
@@ -53,7 +54,7 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                       ),
                       TextButton(
                         onPressed: (){torontoorwaterloo = 'BYE';},
-                       
+
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 5),
                           foregroundColor: const Color.fromARGB(221, 0, 0, 0),
@@ -96,7 +97,7 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                       ),
                       TextButton(
                        onPressed: (){torontoorwaterloo = 'HI';},
-                        
+
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 5),
                           foregroundColor: const Color.fromARGB(221, 0, 0, 0),
@@ -115,10 +116,12 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                 ),
               ],
             ),
-            
+
           ],
         ),
       ),
     );
   }
 }
+
+ */

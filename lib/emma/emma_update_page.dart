@@ -1,5 +1,6 @@
+/*
 import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
+import 'package:litter_app/navigator_bar.dart';
 import 'package:litter_app/home_page.dart';
 import 'package:litter_app/records_page.dart';
 import 'package:litter_app/send.dart';
@@ -34,10 +35,10 @@ class _HandReportPageState extends State<HandReportPage> {
               padding: const EdgeInsets.only(top:30),
               child: const Text('Update condition Severity',
                style: TextStyle(
-                   
+
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                  
+
               ),),
             ),
           ],
@@ -65,7 +66,7 @@ class _HandReportPageState extends State<HandReportPage> {
            Padding(
              padding: const EdgeInsets.only(top: 30),
              child: Row(
-              
+
                children: [
                 const SizedBox(
                   width: 30,
@@ -103,7 +104,7 @@ class _HandReportPageState extends State<HandReportPage> {
           child: Padding(
             padding: const EdgeInsets.only(top: 250),
             child: ElevatedButton.icon(
-            
+
                       onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -119,3 +120,5 @@ class _HandReportPageState extends State<HandReportPage> {
                 ]));
               }
         }
+
+ */
