@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
-import 'package:litter_app/home_page.dart';
-import 'package:litter_app/records_page.dart';
-import 'package:litter_app/send.dart';
+/* import 'package:flutter/material.dart';
+import 'package:litter_app/pages.dart/first_page.dart';
+import 'package:litter_app/pages.dart/home_page.dart';
+import 'package:litter_app/pages.dart/records_page.dart';
+import 'package:litter_app/pages.dart/send.dart';
 
 class HandReportPage extends StatefulWidget {
   const HandReportPage({super.key});
@@ -119,3 +119,4 @@ class _HandReportPageState extends State<HandReportPage> {
                 ]));
               }
         }
+ */

@@ -1,4 +1,4 @@
-import 'package:litter_app/signup_map_page.dart';
+import 'package:litter_app/pages.dart/signup_map_page.dart';
 import 'package:flutter/material.dart';
 
 class SignupContactPage extends StatefulWidget {

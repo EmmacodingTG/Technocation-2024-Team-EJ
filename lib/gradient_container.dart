@@ -1,4 +1,4 @@
-import 'package:litter_app/login_page.dart';
+import 'package:litter_app/pages.dart/login_page.dart';
 import 'package:flutter/material.dart';
 
 class GradientContainer extends StatelessWidget {

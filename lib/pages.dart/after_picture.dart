@@ -1,12 +1,15 @@
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:litter_app/global_variable.dart';
-import 'package:litter_app/update_page.dart';
+import 'package:litter_app/pages.dart/send.dart';
+import 'package:litter_app/pages.dart/update_page.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AfterPicturePage extends StatefulWidget {
   const AfterPicturePage({super.key});
@@ -17,6 +20,8 @@ class AfterPicturePage extends StatefulWidget {
 
 class _AfterPicturePageState extends State<AfterPicturePage> {
   @override
+
+ String imageUrl ='';
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -46,9 +51,13 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
           ),
           Row(
             children: [
-            SizedBox(width: 75,),
-             Text(contactemail),
-             SizedBox(width: 15,),
+              SizedBox(
+                width: 75,
+              ),
+              Text(contactemail),
+              SizedBox(
+                width: 15,
+              ),
               InkWell(
                 onTap: () {
                   FlutterClipboard.copy(contactemail);
@@ -61,17 +70,29 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
               icon: const Icon(Icons.photo_camera),
               iconSize: 100,
               onPressed: () async {
-                final image =
+                final file =
                     await ImagePicker().pickImage(source: ImageSource.camera);
-                if (image == null) return;
-                await Share.shareFiles([image.path],
+                if (file == null) return;
+                await Share.shareFiles([file.path],
                     subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+                print('${file.path}');
+            
+                String uniqueFileName =
+                    DateTime.now().millisecondsSinceEpoch.toString();
+                Reference referenceRoot = FirebaseStorage.instance.ref();
+                Reference referenceDirImages = referenceRoot.child('images');
+                Reference referenceImageToUpload =
+                    referenceDirImages.child(uniqueFileName);
+                try {
+                  await referenceImageToUpload.putFile(File(file.path));
+                 imageUrl= await referenceImageToUpload.getDownloadURL();
+                } catch (error) {}
               }),
           ElevatedButton.icon(
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HandReportPage(),
+                builder: (context) => const SendPage(),
               ),
             ),
             label: const Text('DONE'),

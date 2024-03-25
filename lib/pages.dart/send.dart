@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
+import 'package:litter_app/listview_firebase.dart/findlocation_page.dart';
+import 'package:litter_app/pages.dart/first_page.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:litter_app/global_variable.dart';
@@ -31,7 +32,7 @@ class _SendPageState extends State<SendPage> {
     var message3 = 'Cleaning date:  ';
     var message4 = 'Total Cleaning Time:  ';
     var message5 =
-        'Images of this volunteer activity was sent previously within two seperate emails. Please check your inbox!)';
+        'Images of this volunteer activity was sent previously within two separate emails. Please check your inbox!)';
     var message6 =
         'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
     var Enter = '\n\n';
@@ -113,18 +114,18 @@ class _SendPageState extends State<SendPage> {
                       backgroundColor: Color.fromARGB(146, 122, 228, 150),
                       content: Text('Now displayed in records'),
                       action: SnackBarAction(
-                        label: 'DONE',
+                        label: 'Update Littery Severity',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const FirstPage(),
+                            builder: (context) => const FindLocationPage(),
                           ),
                         ),
                       ),
                     ),
                   );
                 },
-                label: const Text('DONE'),
+                label: const Text('Done'),
                 icon: const Icon(Icons.done),
               ),
             ),

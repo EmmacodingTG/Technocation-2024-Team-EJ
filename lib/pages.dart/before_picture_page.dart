@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:litter_app/timer_page.dart';
-import 'global_variable.dart';
+import 'package:litter_app/pages.dart/timer_page.dart';
+import '../global_variable.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
 class BeforePicturePage extends StatefulWidget {
   const BeforePicturePage({super.key});
 
@@ -20,7 +21,7 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
     MaterialPageRoute(builder: (context) => TimerPage()),
   );
 }
-
+ String imageUrl ='';
   Widget build(BuildContext context) {
    return Scaffold(
       backgroundColor: Colors.white,
@@ -61,15 +62,27 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
               ),
             ],
           ),
-          IconButton(
+         IconButton(
               icon: const Icon(Icons.photo_camera),
               iconSize: 100,
               onPressed: () async {
-                final image =
+                final file =
                     await ImagePicker().pickImage(source: ImageSource.camera);
-                if (image == null) return;
-                await Share.shareFiles([image.path],
+                if (file == null) return;
+                await Share.shareFiles([file.path],
                     subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+                print('${file.path}');
+            
+                String uniqueFileName =
+                    DateTime.now().millisecondsSinceEpoch.toString();
+                Reference referenceRoot = FirebaseStorage.instance.ref();
+                Reference referenceDirImages = referenceRoot.child('images');
+                Reference referenceImageToUpload =
+                    referenceDirImages.child(uniqueFileName);
+                try {
+                  await referenceImageToUpload.putFile(File(file.path));
+                 imageUrl= await referenceImageToUpload.getDownloadURL();
+                } catch (error) {}
               }),
      
           ElevatedButton.icon(

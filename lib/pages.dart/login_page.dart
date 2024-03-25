@@ -1,33 +1,34 @@
-import 'package:litter_app/login_page.dart';
-import 'package:litter_app/signup_contact_page.dart';
+import 'package:litter_app/pages.dart/first_page.dart';
+
+import 'package:litter_app/pages.dart/signup_page.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+void signup() {}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //drawer: const Drawer(child: Text('hEllo World')),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(146, 21, 125, 49),
-        title: Row(children: [
-          Image.asset(
-            'assets/images/user-interface.png',
-            width: 25,
-          ),
-          Container(padding: const EdgeInsets.all(8.0), child: const Text('Sign Up')),
-        ]),
-      ),
-      body: Column(
+                backgroundColor:const  Color.fromARGB(146, 21, 125, 49),
+        title: Row(
+              children: [ Image.asset('assets/images/user-interface.png',  width: 25,),Container(
+                  padding: const EdgeInsets.all(8.0), child:  const Text('Login')),   
+
+     
+      ]),),
+   body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Row(
+        children: [   
+           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [],
@@ -47,26 +48,15 @@ class _SignupPageState extends State<SignupPage> {
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(
-                label: Text('Password'),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(
-              40.0,
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                label: Text('Confirm password'),
-              ),
-            ),
+                decoration: InputDecoration(
+              label: Text('Password'),
+            )),
           ),
           TextButton(
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => const SignupPage(),
               ),
             ),
             style: TextButton.styleFrom(
@@ -76,17 +66,18 @@ class _SignupPageState extends State<SignupPage> {
                 fontSize: 20,
               ),
             ),
-            child: const Text(
-              'Already have an account? Login!',
-              style: TextStyle(
-                color: Color.fromARGB(221, 255, 255, 255),
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                decoration: TextDecoration.underline,
+            child: const Text('not yet user? Sign up!',
+            style: TextStyle(
+                    color: Color.fromARGB(221, 255, 255, 255),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                     decoration: TextDecoration.underline,),
+
               ),
             ),
-          ),
+         
+       
           const SizedBox(height: 10),
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
@@ -97,7 +88,7 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: <Color>[
-                          Color.fromARGB(58, 17, 223, 99),
+                           Color.fromARGB(58, 17, 223, 99),
                           Color.fromARGB(58, 17, 223, 99)
                         ],
                       ),
@@ -108,23 +99,22 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignupContactPage(),
+                      builder: (context) => const FirstPage(),
                     ),
                   ),
                   style: TextButton.styleFrom(
-                    padding: const EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 5), // try doing tutorial invisible box padding thingy
                     foregroundColor: const Color.fromARGB(221, 0, 0, 0),
                     textStyle: const TextStyle(
                       fontSize: 20,
                     ),
                   ),
-                  child: const Text('Sign Up!'),
+                  child: const Text('LOGIN'),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )]));
+    
+      
   }
 }

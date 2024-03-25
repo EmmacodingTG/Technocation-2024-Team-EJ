@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'package:litter_app/global_variable.dart'; 
 import 'package:flutter/material.dart';
-import 'package:litter_app/after_picture.dart';
+import 'package:litter_app/pages.dart/after_picture.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key});

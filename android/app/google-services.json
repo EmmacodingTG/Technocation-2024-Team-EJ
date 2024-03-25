@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "170310918534",
+    "firebase_url": "https://technovation-2024-12-03-default-rtdb.firebaseio.com",
+    "project_id": "technovation-2024-12-03",
+    "storage_bucket": "technovation-2024-12-03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170310918534:android:ab52fdbd0d5bb0721a0c07",
+        "android_client_info": {
+          "package_name": "com.example.litter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170310918534:android:f529ce21866451f61a0c07",
+        "android_client_info": {
+          "package_name": "com.example.technovation_2024_12_03"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170310918534:android:a5ea9aa7baad00441a0c07",
+        "android_client_info": {
+          "package_name": "com.example.technovation_2024_13_03"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170310918534:android:f858446ddd044a131a0c07",
+        "android_client_info": {
+          "package_name": "com.example.technovation_2024_14_03"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170310918534:android:8ced891faa2f66de1a0c07",
+        "android_client_info": {
+          "package_name": "com.example.technovation_2024_15_03"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

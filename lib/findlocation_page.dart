@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:litter_app/before_picture_page.dart';
-class FindLocationPage extends StatefulWidget {
+
+
+import 'package:litter_app/pages.dart/first_page.dart';class FindLocationPage extends StatefulWidget {
   const FindLocationPage({super.key});
 
   @override
@@ -83,7 +84,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                                     onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const BeforePicturePage(),
+                                        builder: (context) => const FirstPage(),
                                       ),
                                     ),
                                     child: const Text('Continue'),

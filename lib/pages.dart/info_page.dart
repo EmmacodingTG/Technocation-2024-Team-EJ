@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:litter_app/first_page.dart';
+import 'package:litter_app/pages.dart/first_page.dart';
 
 
 class InfoPage extends StatelessWidget {
