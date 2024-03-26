@@ -1,4 +1,5 @@
-import 'package:litter_app/pages.dart/login_page.dart';
+import 'package:litter_app/pages.dart/first_page.dart';
+import 'package:litter_app/pages.dart/login/signup%20UI%20pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class GradientContainer extends StatelessWidget {
@@ -51,7 +52,7 @@ class GradientContainer extends StatelessWidget {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
+                    builder: (context) => const FirstPage(),
                   ),
                 ),
                 style: TextButton.styleFrom(

@@ -49,7 +49,7 @@ class InfoPage extends StatelessWidget {
                 width: 10,
               ),
               const Text(
-                'Squares indicate area with litter density.',
+                '.',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -175,139 +175,7 @@ class InfoPage extends StatelessWidget {
              
             ],
           ), const Padding(padding: EdgeInsets.only(top:10)),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Table(
-                border: TableBorder.all(
-                  color: const Color.fromARGB(255, 46, 137, 49),
-                ),
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: [
-                  TableRow(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    children: [
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Image.asset(
-                          'assets/images/square.png',
-                          width: 250,
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Image.asset(
-                          'assets/images/square (1).png',
-                          width: 250,
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Image.asset(
-                          'assets/images/square (2).png',
-                          width: 250,
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Image.asset(
-                          'assets/images/square (3).png',
-                          width: 250,
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Image.asset(
-                          'assets/images/square (4).png',
-                          width: 250,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ...List.generate(
-                      1,
-                      (index) => const TableRow(children: [
-                            TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text(
-                                    '1',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text('2',
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text('3',
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text(
-                                    '4',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text('5',
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                              ),
-                            ),
-                          ]))
-                ],
-              ),
-            ),
-          ),
+         
            Row(
             
              children: [
