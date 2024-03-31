@@ -11,8 +11,8 @@ class GradientContainer extends StatelessWidget {
     return Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 169, 230, 174),
-            Color.fromARGB(255, 137, 250, 143)
+            Color.fromARGB(255, 193, 238, 197),
+            Color.fromARGB(255, 185, 250, 191)
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Center(
@@ -20,18 +20,10 @@ class GradientContainer extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/images/throw-trash.png',
-                width: 250,
+                'assets/images/logo-removebg-preview.png',
+                width: 330
               ),
-              const SizedBox(height: 30),
-              const Text(
-                'Litter App',
-                style: TextStyle(
-                    color: Color.fromARGB(221, 255, 255, 255),
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic),
-              ), const SizedBox(height: 10),
+            SizedBox(height: 30,),
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Stack(
@@ -48,6 +40,7 @@ class GradientContainer extends StatelessWidget {
                     ),
                   ),
                 ),
+             
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
@@ -59,7 +52,7 @@ class GradientContainer extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 5),
                   foregroundColor: const Color.fromARGB(221, 255, 255, 255),
                   textStyle: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 40,
                   ),
                 ),
                 child: const Text('START'),

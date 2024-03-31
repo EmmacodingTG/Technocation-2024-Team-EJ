@@ -4,6 +4,7 @@ import 'package:litter_app/listview_firebase.dart/firestore.dart';
 import 'package:litter_app/pages.dart/first_page.dart';
 
 import 'package:clipboard/clipboard.dart';
+
 class FindLocationPage extends StatefulWidget {
   const FindLocationPage({super.key});
 
@@ -29,7 +30,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
               actions: [
                 ElevatedButton(
                     onPressed: () {
-                      if (docID == null) {
+                      if (docID == null) { ///////
                         firestoreService.addNote(
                             textcontroller.text, textcontroller2.text);
                       } else {
@@ -49,7 +50,10 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       );
                     },
                     child: Text('ADD')),
-              ElevatedButton(onPressed:()=>Navigator.pop(context) , child: Text('Cancel'))],
+                ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('Cancel'))
+              ],
             ));
   }
 
@@ -60,7 +64,8 @@ class _FindLocationPageState extends State<FindLocationPage> {
 
   final TextEditingController textcontroller = TextEditingController();
 
-  final _userStream = FirebaseFirestore.instance.collection('Park Locations').snapshots();
+  final _userStream =
+      FirebaseFirestore.instance.collection('Park Locations').snapshots();
 
   TextEditingController textcontroller2 = TextEditingController();
 
@@ -71,17 +76,14 @@ class _FindLocationPageState extends State<FindLocationPage> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(146, 21, 125, 49),
           leading: IconButton(
-            icon: Icon(Icons.location_on),
-            iconSize: 50,
-            onPressed: 
-               () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const FirstPage(),
-                          ),
-                        )
-            
-          ),
+              icon: Icon(Icons.location_on),
+              iconSize: 50,
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FirstPage(),
+                    ),
+                  )),
           title: const Text('Find A Park'),
         ),
         floatingActionButton: FloatingActionButton(
@@ -93,7 +95,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
         body: StreamBuilder(
           stream: _userStream,
           builder: (context, snapshot) {
-            if (snapshot.hasError) {
+            if (snapshot.hasError) { 
               return Text('Error');
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -101,7 +103,6 @@ class _FindLocationPageState extends State<FindLocationPage> {
             }
             var docs = snapshot.data!.docs;
 
-            //return Text('${docs.length}');
             return ListView.builder(
                 itemCount: docs.length,
                 itemBuilder: (context, index) {
@@ -110,23 +111,105 @@ class _FindLocationPageState extends State<FindLocationPage> {
                   return ListTile(
                       title: Text(docs[index]['Location']),
                       subtitle: Text('${docs[index]['Litter Severity']}'),
-                      
-                      trailing: Row(
-                       mainAxisSize:  MainAxisSize.min,children: [
+                      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                         IconButton(
                           onPressed: () => openNoteBox(docID: docID),
                           icon: Icon(Icons.edit),
                         ),
-                       IconButton(
-                          onPressed: () => firestoreService.deletenNotes(docID),
-                          icon: Icon(Icons.delete),
-                        ), 
-                         InkWell(
-                      onTap: () {
-                        FlutterClipboard.copy(docs[index]['Location'].toString());
-                      },
-                      child: const Icon(Icons.copy),
-                    ),]));
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => Dialog(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 80),
+                                            Image.asset(
+                                              'assets/images/alert.png',
+                                              width: 20,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            const Text(
+                                              'DELETE?',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    221, 255, 255, 255),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Image.asset(
+                                              'assets/images/alert.png',
+                                              width: 20,
+                                            ),
+                                          ],
+                                        ),
+                                       const Row(
+                                          children: [
+                                            SizedBox(width: 40),
+                                             Text(
+                                              'Are you sure you want to delete\n              this location?',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    221, 255, 255, 255),
+                                                fontSize: 15,
+                                                fontStyle: FontStyle.italic,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 15),
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('No'),
+                                        ),
+                                        const SizedBox(
+                                          width: 90,
+                                        ),
+                                        TextButton(
+                                          child: const Text('Yes'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            firestoreService.deleteNotes(docID);
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            FlutterClipboard.copy(
+                                docs[index]['Location'].toString());
+                          },
+                          child: const Icon(Icons.copy),
+                        ),
+                      ]));
                 });
           },
         ));
