@@ -6,7 +6,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
-import 'date_page.dart';
+
 
 class BeforePicturePage extends StatefulWidget {
   const BeforePicturePage({super.key});
@@ -22,7 +22,7 @@ class _BeforePicturePageState extends State<BeforePicturePage> {
   @override
 void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) =>const DatePage()),
+    MaterialPageRoute(builder: (context) =>const StopwatchPage()),
   );
 }
  String imageUrl ='';

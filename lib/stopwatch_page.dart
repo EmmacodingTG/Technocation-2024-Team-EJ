@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:litter_app/after_picture.dart';
-import 'after_picture.dart';
+
 
 String time = '';
+String date ='';
+
 
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
@@ -29,7 +31,9 @@ class _StopwatchPageState extends State<StopwatchPage> {
       if (pickedDate != null) {
         setState(() {
           _dateTime = pickedDate;
-          selectedDate = pickedDate;
+         date = pickedDate.toString();
+   
+          
         });
       }
     });
