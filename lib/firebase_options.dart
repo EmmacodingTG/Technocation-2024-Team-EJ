@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -42,16 +48,6 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA5NeDixOBFoMJ0NXEQMcJrosmLdAnnJqk',
-    appId: '1:170310918534:web:2b5c671d737142241a0c07',
-    messagingSenderId: '170310918534',
-    projectId: 'technovation-2024-12-03',
-    authDomain: 'technovation-2024-12-03.firebaseapp.com',
-    databaseURL: 'https://technovation-2024-12-03-default-rtdb.firebaseio.com',
-    storageBucket: 'technovation-2024-12-03.appspot.com',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBzqDVGhOY8_SqCJrnKDEyE80FN1VDMYio',
@@ -70,15 +66,5 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://technovation-2024-12-03-default-rtdb.firebaseio.com',
     storageBucket: 'technovation-2024-12-03.appspot.com',
     iosBundleId: 'com.example.litterApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDSp-89B-vBXFRThafo3YKwEbddZczhtf0',
-    appId: '1:170310918534:ios:a3a89d3f95e779161a0c07',
-    messagingSenderId: '170310918534',
-    projectId: 'technovation-2024-12-03',
-    databaseURL: 'https://technovation-2024-12-03-default-rtdb.firebaseio.com',
-    storageBucket: 'technovation-2024-12-03.appspot.com',
-    iosBundleId: 'com.example.litterApp.RunnerTests',
   );
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/listview_firebase.dart/findlocation_page.dart';
-import 'package:litter_app/pages.dart/first_page.dart';
-
+import 'package:litter_app/find_location_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:litter_app/global_variable.dart';
+import 'login_page.dart';
+
+String contact_email = '';
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -14,6 +14,10 @@ class SendPage extends StatefulWidget {
 }
 
 class _SendPageState extends State<SendPage> {
+
+  DateTime? selectedDate;
+  final TextEditingController addressTextEditingController = TextEditingController();
+
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries
         .map((MapEntry<String, String> e) =>
@@ -23,9 +27,9 @@ class _SendPageState extends State<SendPage> {
 
   @override
   Widget build(BuildContext context) {
-    // create global variable of timer and contacts ( put contacts email into the recipitent's email )
+    // create global variable of timer and contacts ( put contacts email into the recipient's email )
     
-    var subject = 'Confirmation of litter cleaning';
+    var subject = '';
     var message =
         "Hello, this is a message about________'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
     var message2 = 'Address:';
@@ -64,6 +68,7 @@ class _SendPageState extends State<SendPage> {
         Enter +
         " " +
         message6;
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -88,10 +93,14 @@ class _SendPageState extends State<SendPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 50),
               child: ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
+                  final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
+                  if (snapshot_email.exists){
+                    contact_email = snapshot_email.value as String;
+                  }
                   Uri uri = Uri(
                     scheme: 'mailto',
-                    path: contactemail,
+                    path: contact_email,
                     query: encodeQueryParameters(<String, String>{
                       'subject': subject,
                       'body': fullmessage 

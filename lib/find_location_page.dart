@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/listview_firebase.dart/firestore.dart';
-import 'package:litter_app/pages.dart/first_page.dart';
-
+import 'package:litter_app/firestore.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:litter_app/clean_page.dart';
+
+import 'first_page.dart';
+
 
 class FindLocationPage extends StatefulWidget {
   const FindLocationPage({super.key});
@@ -45,7 +47,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const FirstPage(),
+                          builder: (context) => const CleanPage(),
                         ),
                       );
                     },
@@ -157,7 +159,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                                           children: [
                                             SizedBox(width: 40),
                                              Text(
-                                              'Are you sure you want to delete\n              this location?',
+                                              'Are you sure you want to delete\nthis location?',
                                               style: TextStyle(
                                                 color: Color.fromARGB(
                                                     221, 255, 255, 255),

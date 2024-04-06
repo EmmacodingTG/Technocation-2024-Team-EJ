@@ -1,29 +1,25 @@
-
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/pages.dart/timer_page.dart';
-import '../global_variable.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:litter_app/send.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'dart:io';
-class BeforePicturePage extends StatefulWidget {
-  const BeforePicturePage({super.key});
+
+class AfterPicturePage extends StatefulWidget {
+  const AfterPicturePage({super.key});
+  @override
+  State<AfterPicturePage> createState() => _AfterPicturePageState();
+}
+
+class _AfterPicturePageState extends State<AfterPicturePage> {
 
   @override
-  State<BeforePicturePage> createState() => _BeforePicturePageState();
-}
-class _BeforePicturePageState extends State<BeforePicturePage> {
-  
-  @override
-void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => TimerPage()),
-  );
-}
- String imageUrl ='';
+  String imageUrl ='';
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(146, 21, 125, 49),
@@ -35,7 +31,7 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
             child: Padding(
               padding: EdgeInsets.only(top: 50),
               child: Text(
-                'BEFORE PHOTO:',
+                'AFTER PHOTO:',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
@@ -51,18 +47,22 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
           ),
           Row(
             children: [
-            SizedBox(width: 75,),
-             Text(contactemail),
-             SizedBox(width: 15,),
+              SizedBox(
+                width: 75,
+              ),
+              Text(contact_email),
+              SizedBox(
+                width: 15,
+              ),
               InkWell(
                 onTap: () {
-                  FlutterClipboard.copy(contactemail);
+                  FlutterClipboard.copy(contact_email);
                 },
                 child: const Icon(Icons.copy),
               ),
             ],
           ),
-         IconButton(
+          IconButton(
               icon: const Icon(Icons.photo_camera),
               iconSize: 100,
               onPressed: () async {
@@ -84,14 +84,17 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
                  imageUrl= await referenceImageToUpload.getDownloadURL();
                 } catch (error) {}
               }),
-     
           ElevatedButton.icon(
-              onPressed: ()=>navigateToTimerPage(context),
-            label: const Text('NEXT'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SendPage(),
+              ),
+            ),
+            label: const Text('DONE'),
             icon: const Icon(Icons.done),
           ),
-    ]
-        ,
+        ],
       ),
     );
   }

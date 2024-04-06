@@ -1,14 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:litter_app/listview_firebase.dart/findlocation_page.dart';
-
-
-
-import 'package:litter_app/pages.dart/home_page.dart';
-import 'package:litter_app/pages.dart/info_page.dart';
-
-import 'package:litter_app/pages.dart/records_page.dart';
+import 'package:litter_app/find_location_page.dart';
+import 'package:litter_app/clean_page.dart';
+import 'package:litter_app/info_page.dart';
+import 'records_page.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -26,11 +20,10 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   final List<Widget> _pages = [
-    const HomePage(),
-    const RecordsPage(),
+    const CleanPage(),
+    RecordsPage(),
     const InfoPage(),
-   FindLocationPage(),
-    
+    const FindLocationPage(),
   ];
 
   @override
@@ -44,8 +37,7 @@ class _FirstPageState extends State<FirstPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.schedule), label: 'Records'),
           BottomNavigationBarItem(icon: Icon(Icons.info), label: 'info'),
-           BottomNavigationBarItem(icon: Icon(Icons.location_on), label: 'Find A Park'),
-         
+          BottomNavigationBarItem(icon: Icon(Icons.location_on), label: 'Find A Park'),
         ],
       ),
     );

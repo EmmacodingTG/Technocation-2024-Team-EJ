@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
-
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:litter_app/pages.dart/before_picture_page.dart';
+import 'before_picture_page.dart';
 
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class CleanPage extends StatefulWidget {
+  const CleanPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CleanPage> createState() => _CleanPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CleanPageState extends State<CleanPage> {
   final TextEditingController locationController = TextEditingController();
   final MapController mapController = MapController();
   final TextEditingController addsquarecontroller = TextEditingController();
@@ -193,9 +191,6 @@ class _HomePageState extends State<HomePage> {
                     label: const Text('Clean'),
                     icon: const Icon(Icons.cleaning_services),
                   ),
-             
-                           
-          
         ],
       ),
     );
