@@ -1,4 +1,3 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'clean_page.dart';
 import 'login_page.dart';
 import 'stopwatch_page.dart';
-
 
 String contact_email = '';
 int length_records = 0;
@@ -38,54 +36,38 @@ class _SendPageState extends State<SendPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     var subject = '';
-    var message =
-        "Hello, this is a message about $username's cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
-    var message2 = 'Address: $user_location';
-    var message3 = 'Cleaning date: this is where you add the user_date variable';
+    var message = "Hello, this is a message about " +
+        usernameControllertext +
+        " 's cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
+    var message2 = 'Address:' + address;
+    var message3 = 'Cleaning date: ';
     var message4 = 'Total cleaning time: $user_time';
-    var message5 = 'The before and after images were sent earlier to your inbox.';
-    var message6 = 'Please reach out to $username if there are any issues.\n\nThank you!\n\n From: LITTER APP';
+    var message5 =
+        'The before and after images were sent earlier to your inbox.';
+    var message6 = 'Please reach out to ' +
+        usernameControllertext +
+        ' if there are any issues.\n\nThank you!\n\n From: Greener Parks';
 
     // create global variable of timer and contacts ( put contacts email into the recipient's email )
-
-    var subject = '';
-    var message =
-        "Hello, this is a message about " +"" + usernameControllertext +"" + "'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
-    var message2 = 'Address:';
-    var message3 = 'Cleaning date:  ';
-    var message4 = 'Total Cleaning Time:  ';
-    var message5 =
-        'Images of this volunteer activity was sent previously within two separate emails. Please check your inbox!)';
-    var message6 =
-        'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
 
     var Enter = '\n\n';
 
     String DateTimeString = date;
 
-    String messageperiode = message + " " + Enter;
+    String messageperiode = message + Enter;
 
     String fullmessage = messageperiode +
-        " " +
         message2 +
-        " " +
-        addressTextEditingController.text +
-        " " +
         Enter +
-        " " +
         message3 +
-        "" +
         DateTimeString +
-        " " +
         Enter +
-        " " +
         message4 +
-        "" +
-        time;
-    " " + Enter + " " + message5 + " " + Enter + " " + message6;
+        Enter +
+        message5 +
+        Enter +
+        message6;
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -138,12 +120,18 @@ class _SendPageState extends State<SendPage> {
             child: Center(
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  final snapshot_records_length = await ref.child('users_list/$user_index/records').get();
-                  if (snapshot_records_length.exists){
-                    length_records = (snapshot_records_length.value).toString().split("{'after_image'").length;
+                  final snapshot_records_length =
+                      await ref.child('users_list/$user_index/records').get();
+                  if (snapshot_records_length.exists) {
+                    length_records = (snapshot_records_length.value)
+                        .toString()
+                        .split("{'after_image'")
+                        .length;
                   }
-                  DatabaseReference records_list = FirebaseDatabase.instance.ref('users_list/$user_index/records');
-                  DatabaseReference new_record = records_list.child('${length_records+1}');
+                  DatabaseReference records_list = FirebaseDatabase.instance
+                      .ref('users_list/$user_index/records');
+                  DatabaseReference new_record =
+                      records_list.child('${length_records + 1}');
                   new_record.set({
                     'after_image': user_after_image,
                     'before_image': user_before_image,
@@ -160,9 +148,10 @@ class _SendPageState extends State<SendPage> {
                         label: 'Update Litter Severity',
                         onPressed: () {
                           Navigator.push(
-                            context, MaterialPageRoute(
-                            builder: (context) => const FindLocationPage(),
-                          ),
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FindLocationPage(),
+                            ),
                           );
                         },
                       ),

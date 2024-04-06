@@ -49,20 +49,20 @@ class _LoginPageState extends State<LoginPage> {
             children: [],
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Username'),
+              decoration:const InputDecoration(labelText: 'Username'),
               controller: usernameController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               controller: passwordController,
             ),
           ),

@@ -9,8 +9,9 @@ String user_time = '';
 
 String time = '';
 String date ='';
-
-
+  final addressTextEditingController =
+      TextEditingController();
+String address = addressTextEditingController.text;
 
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
@@ -22,8 +23,7 @@ class StopwatchPage extends StatefulWidget {
 class _StopwatchPageState extends State<StopwatchPage> {
   DateTime _dateTime = DateTime.now();
   DateTime? selectedDate;
-  final TextEditingController addressTextEditingController =
-      TextEditingController();
+
 
   void _showDatePicker() {
     showDatePicker(
