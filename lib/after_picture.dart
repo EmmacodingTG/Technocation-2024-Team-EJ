@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:litter_app/send.dart';
@@ -50,11 +48,11 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
           ),
           Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 75,
               ),
               Text(contact_email),
-              SizedBox(
+             const  SizedBox(
                 width: 15,
               ),
               InkWell(

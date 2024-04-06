@@ -46,15 +46,15 @@ class _RecordsPageState extends State<RecordsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-              child: FirebaseAnimatedList(
+        body: 
+             FirebaseAnimatedList(
                   query: records_ref,
                   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
                     Map record = snapshot.value as Map;
                     record['index'] = user_index;
                     return listItem(record: record);
                   }
-                  )
+               
         ),
     );
   }

@@ -1,12 +1,19 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:litter_app/location_select.dart';
+import 'package:litter_app/first_page.dart';
+
 import 'package:litter_app/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
+
+String usernameControllertext = usernameController.text;
+ final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
 int user_index = 0;
 String contact_email = '';
 DatabaseReference ref = FirebaseDatabase.instance.ref();
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,8 +26,7 @@ void signup() {}
 
 class _LoginPageState extends State<LoginPage> {
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                               }
                               Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => LocationSelectPage())
+                                  MaterialPageRoute(builder: (context) => const FirstPage())
                               );
                             } // end password
                             else {
@@ -150,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                               showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                  content: Text('Username or password incorrect.'),
+                                  content: const Text('Username or password incorrect.'),
                                   actions: [
                                     TextButton(
                                         onPressed: () {

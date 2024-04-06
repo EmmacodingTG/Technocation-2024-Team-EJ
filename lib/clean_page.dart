@@ -47,7 +47,7 @@ class _CleanPageState extends State<CleanPage> {
                   children: [
                     const SizedBox(width: 15),
                     IconButton(
-                      icon: Icon(Icons.info),
+                      icon: const Icon(Icons.info),
                       iconSize: 30,
                       tooltip:
                           'Enter Provinces, Cities, Parks, or Postal Codes',

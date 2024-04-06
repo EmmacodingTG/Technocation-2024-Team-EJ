@@ -1,12 +1,18 @@
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/find_location_page.dart';
 import 'package:litter_app/signup_page.dart';
+
+import 'package:flutter/material.dart';
+import 'package:litter_app/find_location_page.dart';
 import 'package:litter_app/stopwatch_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'clean_page.dart';
 import 'login_page.dart';
+import 'stopwatch_page.dart';
+
 
 String contact_email = '';
 int length_records = 0;
@@ -19,9 +25,9 @@ class SendPage extends StatefulWidget {
 }
 
 class _SendPageState extends State<SendPage> {
-
   DateTime? selectedDate;
-  final TextEditingController addressTextEditingController = TextEditingController();
+  final TextEditingController addressTextEditingController =
+      TextEditingController();
 
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries
@@ -33,6 +39,7 @@ class _SendPageState extends State<SendPage> {
   @override
   Widget build(BuildContext context) {
 
+
     var subject = '';
     var message =
         "Hello, this is a message about $username's cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
@@ -41,9 +48,23 @@ class _SendPageState extends State<SendPage> {
     var message4 = 'Total cleaning time: $user_time';
     var message5 = 'The before and after images were sent earlier to your inbox.';
     var message6 = 'Please reach out to $username if there are any issues.\n\nThank you!\n\n From: LITTER APP';
+
+    // create global variable of timer and contacts ( put contacts email into the recipient's email )
+
+    var subject = '';
+    var message =
+        "Hello, this is a message about " +"" + usernameControllertext +"" + "'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
+    var message2 = 'Address:';
+    var message3 = 'Cleaning date:  ';
+    var message4 = 'Total Cleaning Time:  ';
+    var message5 =
+        'Images of this volunteer activity was sent previously within two separate emails. Please check your inbox!)';
+    var message6 =
+        'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
+
     var Enter = '\n\n';
 
-    String dateTimeString = selectedDate.toString();
+    String DateTimeString = date;
 
     String messageperiode = message + " " + Enter;
 
@@ -57,19 +78,14 @@ class _SendPageState extends State<SendPage> {
         " " +
         message3 +
         "" +
-        dateTimeString +
+        DateTimeString +
         " " +
         Enter +
         " " +
         message4 +
-        " " +
-        Enter +
-        " " +
-        message5 +
-        " " +
-        Enter +
-        " " +
-        message6;
+        "" +
+        time;
+    " " + Enter + " " + message5 + " " + Enter + " " + message6;
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -96,8 +112,10 @@ class _SendPageState extends State<SendPage> {
               padding: const EdgeInsets.only(top: 50),
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
-                  if (snapshot_email.exists){
+                  final snapshot_email = await ref
+                      .child('users_list/$user_index/community_sponsor_email')
+                      .get();
+                  if (snapshot_email.exists) {
                     contact_email = snapshot_email.value as String;
                   }
                   Uri uri = Uri(
@@ -105,7 +123,7 @@ class _SendPageState extends State<SendPage> {
                     path: contact_email,
                     query: encodeQueryParameters(<String, String>{
                       'subject': subject,
-                      'body': fullmessage 
+                      'body': fullmessage
                     }),
                   );
                   launchUrl(uri);
@@ -136,8 +154,8 @@ class _SendPageState extends State<SendPage> {
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: Color.fromARGB(146, 122, 228, 150),
-                      content: Text('Now displayed in records'),
+                      backgroundColor: const Color.fromARGB(146, 122, 228, 150),
+                      content: const Text('Now displayed in records'),
                       action: SnackBarAction(
                         label: 'Update Litter Severity',
                         onPressed: () {

@@ -1,9 +1,16 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:litter_app/after_picture.dart';
 
+
 String user_time = '';
+
+
+String time = '';
+String date ='';
+
+
 
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
@@ -13,20 +20,42 @@ class StopwatchPage extends StatefulWidget {
 }
 
 class _StopwatchPageState extends State<StopwatchPage> {
+  DateTime _dateTime = DateTime.now();
+  DateTime? selectedDate;
+  final TextEditingController addressTextEditingController =
+      TextEditingController();
+
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime(2024, 3, 15),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    ).then((pickedDate) {
+      if (pickedDate != null) {
+        setState(() {
+          _dateTime = pickedDate;
+         date = pickedDate.toString();
+   
+          
+        });
+      }
+    });
+  }
 
   int seconds = 0, minutes = 0, hours = 0;
   String digitSeconds = '00', digitMinutes = '00', digitHours = '00';
   Timer? timer;
   bool started = false;
 
-  void stop(){
+  void stop() {
     timer!.cancel();
     setState(() {
       started = false;
     });
   } // end void stop
 
-  void reset(){
+  void reset() {
     timer!.cancel();
     setState(() {
       seconds = 0;
@@ -38,20 +67,20 @@ class _StopwatchPageState extends State<StopwatchPage> {
       digitHours = '00';
 
       started = false;
-
-    });
+    }
+    );
   } // end void reset
 
-  void start(){
+  void start() {
     started = true;
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       int localSeconds = seconds + 1;
       int localMinutes = minutes;
       int localHours = hours;
 
-      if (localSeconds > 59){
-        if (localMinutes > 59){
-          localHours ++;
+      if (localSeconds > 59) {
+        if (localMinutes > 59) {
+          localHours++;
           localMinutes = 0;
         } else {
           localMinutes++;
@@ -63,74 +92,165 @@ class _StopwatchPageState extends State<StopwatchPage> {
         seconds = localSeconds;
         minutes = localMinutes;
         hours = localHours;
-        digitSeconds = (seconds >= 10) ?'$seconds':'0$seconds';
-        digitMinutes = (minutes >= 10) ?'$minutes':'0$minutes';
-        digitHours = (hours >= 10) ?'$hours':'0$hours';
+        digitSeconds = (seconds >= 10) ? '$seconds' : '0$seconds';
+        digitMinutes = (minutes >= 10) ? '$minutes' : '0$minutes';
+        digitHours = (hours >= 10) ? '$hours' : '0$hours';
       });
-
     });
   } // end void start
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Cleaning'),
+        backgroundColor: const Color.fromARGB(146, 21, 125, 49),
+        title: const Text('Step 2: Time Your Cleaning'),
       ),
       body: Column(
         children: [
-          Container(
-            child: Text('location'),
+          Row(
+            children: [
+              const SizedBox(width: 30),
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text(
+                  'Cleaning:',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                     decorationColor: Color.fromARGB(146, 21, 125, 49),
+                        decorationThickness: 2,
+       
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Image.asset(
+                  'assets/images/data-cleaning.png',
+                  width: 45,
+                ),
+              ),
+            ],
           ),
-          Container(
-              child: Text('Stopwatch:')
+          const Row(
+            children: [
+              SizedBox(width: 30),
+              Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text('Address:',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),),
+              ),
+            ],
           ),
-          Container(
-              child: Text('$digitHours:$digitMinutes:$digitSeconds')
+            Padding(
+              padding: const EdgeInsets.only(left:30),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter copied address',
+                  border:  OutlineInputBorder(),
+                ),
+                controller: addressTextEditingController,
+              ),
+            ),
+              
+            
+          
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: ElevatedButton.icon(
+              onPressed: _showDatePicker,
+              label: const Text('Choose Date'),
+              icon: const Icon(Icons.calendar_month),
+            ),
           ),
+          const Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Row(
+              children: [
+                SizedBox(width: 30),
+                Text(
+                  'Chosen Date:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              const SizedBox(width: 30),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  _dateTime.toString(),
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        
+           const  Text('location'),
+          
+          const Text('Stopwatch:'),
+        (Text('$digitHours:$digitMinutes:$digitSeconds')),
           ElevatedButton(
               onPressed: () {
-                (!started) ?start() : stop();
+                (!started) ? start() : stop();
               },
               child: Text(
                 (!started) ? 'start' : 'pause',
-              )
-          ),
+              )),
           ElevatedButton(
               onPressed: () {
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      content: Text('Are you sure you wish to reset the stopwatch?'),
-                      actions: [
-                        TextButton(onPressed: () {
-                          reset();
-                        }, child: Text('yes')
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text('no')
-                        )
-                      ],
-                    )
-                );
+                          content: const Text(
+                              'Are you sure you wish to reset the stopwatch?'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  reset();
+                                    Navigator.pop(context);
+
+                                },
+                                child: const Text('yes')),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('no'))
+                          ],
+                        ));
               },
-              child: Text('reset')
-          ),
+              child: const Text('reset')),
           ElevatedButton(
               onPressed: () {
                 user_time = '$digitHours hours and $digitMinutes minutes';
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AfterPicturePage())
-                );
+                    MaterialPageRoute(
+                        builder: (context) => const AfterPicturePage()));
               },
-              child: Text('next')
-          )
+              child: const Text('next'))
         ],
       ),
     );
   }
+
 }

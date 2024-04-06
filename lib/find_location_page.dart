@@ -4,6 +4,8 @@ import 'package:litter_app/firestore.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:litter_app/clean_page.dart';
 import 'package:litter_app/first_page.dart';
+import 'first_page.dart';
+
 
 
 class FindLocationPage extends StatefulWidget {
@@ -77,7 +79,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(146, 21, 125, 49),
           leading: IconButton(
-              icon: Icon(Icons.location_on),
+              icon:const Icon(Icons.location_on),
               iconSize: 50,
               onPressed: () => Navigator.push(
                     context,
@@ -97,10 +99,10 @@ class _FindLocationPageState extends State<FindLocationPage> {
           stream: _userStream,
           builder: (context, snapshot) {
             if (snapshot.hasError) { 
-              return Text('Error');
+              return const Text('Error');
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text('Error');
+              return const Text('Error');
             }
             var docs = snapshot.data!.docs;
 
@@ -115,7 +117,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                         IconButton(
                           onPressed: () => openNoteBox(docID: docID),
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete),

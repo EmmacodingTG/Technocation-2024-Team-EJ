@@ -7,7 +7,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
-import 'date_page.dart';
+
 
 bool before_image_taken = false;
 
@@ -25,7 +25,7 @@ class _BeforePicturePageState extends State<BeforePicturePage> {
   @override
 void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => DatePage()),
+    MaterialPageRoute(builder: (context) =>const StopwatchPage()),
   );
 }
  String imageUrl ='';
@@ -58,9 +58,9 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
           ),
           Row(
             children: [
-              SizedBox(width: 75),
+             const  SizedBox(width: 75),
               Text(contact_email),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               InkWell(
                 onTap: () async {
                   FlutterClipboard.copy(contact_email);
@@ -95,6 +95,7 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
      
           ElevatedButton.icon(
             onPressed: () {
+
               if (before_image_taken == false){
                 showDialog(
                   context: context,
@@ -115,6 +116,12 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
                     MaterialPageRoute(builder: (context) => StopwatchPage())
                 );
               }
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const StopwatchPage())
+              );
+
             },
             label: const Text('NEXT'),
             icon: const Icon(Icons.done),
