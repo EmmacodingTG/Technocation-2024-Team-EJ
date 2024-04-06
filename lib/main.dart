@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
-import 'jay/gradient_container.dart';
+import 'gradient_container.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 int length_users = 0;
