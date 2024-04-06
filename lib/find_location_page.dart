@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/firestore.dart';
 import 'package:clipboard/clipboard.dart';
-import 'package:litter_app/clean_page.dart';
 import 'package:litter_app/first_page.dart';
-import 'first_page.dart';
+
 
 
 
@@ -52,10 +51,10 @@ class _FindLocationPageState extends State<FindLocationPage> {
                         ),
                       );
                     },
-                    child: Text('ADD')),
+                    child: const Text('ADD')),
                 ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: Text('Cancel'))
+                    child: const Text('Cancel'))
               ],
             ));
   }

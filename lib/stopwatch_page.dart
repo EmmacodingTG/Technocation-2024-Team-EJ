@@ -136,29 +136,18 @@ class _StopwatchPageState extends State<StopwatchPage> {
           ),
         Row(
             children: [
-              SizedBox(width: 30),
+             const SizedBox(width: 30),
               Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 30),
                 child: Text('Address: $user_location',
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),),
               ),
             ],
           ),
-            /*
-            Padding(
-              padding: const EdgeInsets.only(left:30),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter copied address',
-                  border:  OutlineInputBorder(),
-                ),
-                controller: addressTextEditingController,
-              ),
-            ),
-             */
+         
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: ElevatedButton.icon(
@@ -197,9 +186,26 @@ class _StopwatchPageState extends State<StopwatchPage> {
               ),
             ],
           ),
-          const Text('location'),
-          const Text('Stopwatch:'),
-        (Text('$digitHours:$digitMinutes:$digitSeconds')),
+
+       
+         const  Padding(
+            padding:  EdgeInsets.only(top:65),
+            child:  Row(
+              children: [
+               SizedBox(width:30), Text('Stopwatch:',
+       
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),),
+              ],
+            ),
+          ),
+        (Text('$digitHours:$digitMinutes:$digitSeconds',style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),)),
+                  const SizedBox(height:30),
           ElevatedButton(
               onPressed: () {
                 (!started) ? start() : stop();
