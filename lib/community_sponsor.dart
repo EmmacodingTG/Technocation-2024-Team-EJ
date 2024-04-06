@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:litter_app/first_page.dart';
 import 'package:litter_app/signup_page.dart';
 import 'main.dart';
-import 'location_select.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'login_page.dart';
@@ -16,10 +16,10 @@ class CommunitySponsorPage extends StatefulWidget {
 }
 
 class _CommunitySponsorState extends State<CommunitySponsorPage> {
-
   final community_sponsor_nameController = TextEditingController();
   final community_sponsor_emailController = TextEditingController();
   final community_sponsor_phoneController = TextEditingController();
+
 
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries
@@ -56,7 +56,7 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Please add contacts of your teacher/community sponsor',
+                'Please add contacts of your teacher/\ncommunity sponsor',
                 style: TextStyle(
                   color: Color.fromARGB(221, 255, 255, 255),
                   fontSize: 20,
@@ -157,16 +157,14 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
                               launchUrl(uri);
 
                               // save contact email
-                              final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
-                              if (snapshot_email.exists){
-                                contact_email = snapshot_email.value as String;
-                              }
+                              contact_email = community_sponsor_emailController.text;
+                          
 
                               // navigate to next screen
 
                               Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const LocationSelectPage())
+                                  MaterialPageRoute(builder: (context) => const FirstPage())
                               );
                             }, child: const Text('yes')),
                             TextButton(onPressed: () {

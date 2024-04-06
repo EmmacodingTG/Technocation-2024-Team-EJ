@@ -33,7 +33,7 @@ class _SendPageState extends State<SendPage> {
 
     var subject = '';
     var message =
-        "Hello, this is a message about________'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
+        "Hello, this is a message about " +"" + usernameControllertext +"" + "'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
     var message2 = 'Address:';
     var message3 = 'Cleaning date:  ';
     var message4 = 'Total Cleaning Time:  ';
