@@ -1,10 +1,15 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/find_location_page.dart';
+import 'package:litter_app/signup_page.dart';
+import 'package:litter_app/stopwatch_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'clean_page.dart';
 import 'login_page.dart';
 
 String contact_email = '';
+int length_records = 0;
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -27,18 +32,15 @@ class _SendPageState extends State<SendPage> {
 
   @override
   Widget build(BuildContext context) {
-    // create global variable of timer and contacts ( put contacts email into the recipient's email )
-    
+
     var subject = '';
     var message =
-        "Hello, this is a message about________'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
-    var message2 = 'Address:';
-    var message3 = 'Cleaning date:  ';
-    var message4 = 'Total Cleaning Time:  ';
-    var message5 =
-        'Images of this volunteer activity was sent previously within two separate emails. Please check your inbox!)';
-    var message6 =
-        'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
+        "Hello, this is a message about $username's cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
+    var message2 = 'Address: $user_location';
+    var message3 = 'Cleaning date: this is where you add the user_date variable';
+    var message4 = 'Total cleaning time: $user_time';
+    var message5 = 'The before and after images were sent earlier to your inbox.';
+    var message6 = 'Please reach out to $username if there are any issues.\n\nThank you!\n\n From: LITTER APP';
     var Enter = '\n\n';
 
     String dateTimeString = selectedDate.toString();
@@ -117,19 +119,34 @@ class _SendPageState extends State<SendPage> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
+                  final snapshot_records_length = await ref.child('users_list/$user_index/records').get();
+                  if (snapshot_records_length.exists){
+                    length_records = (snapshot_records_length.value).toString().split("{'after_image'").length;
+                  }
+                  DatabaseReference records_list = FirebaseDatabase.instance.ref('users_list/$user_index/records');
+                  DatabaseReference new_record = records_list.child('${length_records+1}');
+                  new_record.set({
+                    'after_image': user_after_image,
+                    'before_image': user_before_image,
+                    'date': 'this is where you add the user_date variable',
+                    'location': user_location,
+                    'volunteered_time': user_time,
+                  });
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: Color.fromARGB(146, 122, 228, 150),
                       content: Text('Now displayed in records'),
                       action: SnackBarAction(
-                        label: 'Update Littery Severity',
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                        label: 'Update Litter Severity',
+                        onPressed: () {
+                          Navigator.push(
+                            context, MaterialPageRoute(
                             builder: (context) => const FindLocationPage(),
                           ),
-                        ),
+                          );
+                        },
                       ),
                     ),
                   );

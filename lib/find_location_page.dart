@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:litter_app/firestore.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:litter_app/clean_page.dart';
-
-import 'first_page.dart';
+import 'package:litter_app/first_page.dart';
 
 
 class FindLocationPage extends StatefulWidget {
@@ -47,7 +46,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CleanPage(),
+                          builder: (context) => const FirstPage(),
                         ),
                       );
                     },
@@ -83,7 +82,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
               onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const FirstPage(),
+                      builder: (context) => const CleanPage(),
                     ),
                   )),
           title: const Text('Find A Park'),

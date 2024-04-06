@@ -135,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (passwordController.text == snapshot_user_password.value) {
                               username_correct = true;
                               user_index = i;
+                              username = usernameController.text;
                               final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
                               if (snapshot_email.exists){
                                 contact_email = snapshot_email.value as String;

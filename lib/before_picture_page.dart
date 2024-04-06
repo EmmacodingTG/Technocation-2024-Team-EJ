@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:litter_app/clean_page.dart';
 import 'package:litter_app/send.dart';
 import 'package:litter_app/stopwatch_page.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,6 +8,8 @@ import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'date_page.dart';
+
+bool before_image_taken = false;
 
 class BeforePicturePage extends StatefulWidget {
   const BeforePicturePage({super.key});
@@ -75,8 +78,9 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
                 if (file == null) return;
                 await Share.shareFiles([file.path],
                     subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+                before_image_taken = true;
                 print('${file.path}');
-            
+                user_before_image = '${file.path}';
                 String uniqueFileName =
                     DateTime.now().millisecondsSinceEpoch.toString();
                 Reference referenceRoot = FirebaseStorage.instance.ref();
@@ -91,10 +95,26 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
      
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => StopwatchPage())
-              );
+              if (before_image_taken == false){
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: Text('Please take a picture.'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }, // onPressed
+                          child: Text('Okay')),
+                    ], // actions
+                  )
+                );
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => StopwatchPage())
+                );
+              }
             },
             label: const Text('NEXT'),
             icon: const Icon(Icons.done),

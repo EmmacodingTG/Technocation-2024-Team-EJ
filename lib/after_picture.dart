@@ -7,6 +7,9 @@ import 'package:litter_app/send.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'clean_page.dart';
+
+bool after_image_taken = false;
 
 class AfterPicturePage extends StatefulWidget {
   const AfterPicturePage({super.key});
@@ -71,6 +74,8 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
                 if (file == null) return;
                 await Share.shareFiles([file.path],
                     subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+                after_image_taken = true;
+                user_after_image = '${file.path}';
                 print('${file.path}');
             
                 String uniqueFileName =
@@ -85,12 +90,27 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
                 } catch (error) {}
               }),
           ElevatedButton.icon(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SendPage(),
-              ),
-            ),
+            onPressed: () {
+              if (after_image_taken == false){
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: Text('Please take a picture.'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {Navigator.pop(context);},
+                          child: Text('Okay'))
+                    ],
+                  )
+                );
+              } else {
+                Navigator.push(
+                  context, MaterialPageRoute(
+                  builder: (context) => const SendPage(),
+                ),
+                );
+              }
+            },
             label: const Text('DONE'),
             icon: const Icon(Icons.done),
           ),
