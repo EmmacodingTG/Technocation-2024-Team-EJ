@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:litter_app/after_picture.dart';
 
+import 'clean_page.dart';
+
 
 String user_time = '';
-
-
-String time = '';
-String date ='';
+String user_date ='';
 
 String address = addressTextEditingController.text;
   final addressTextEditingController =
@@ -36,9 +35,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
       if (pickedDate != null) {
         setState(() {
           _dateTime = pickedDate;
-         date = pickedDate.toString();
-   
-          
+         user_date = pickedDate.toString();
         });
       }
     });
@@ -100,9 +97,6 @@ class _StopwatchPageState extends State<StopwatchPage> {
     });
   } // end void start
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,12 +134,12 @@ class _StopwatchPageState extends State<StopwatchPage> {
               ),
             ],
           ),
-          const Row(
+        Row(
             children: [
               SizedBox(width: 30),
               Padding(
                 padding: EdgeInsets.only(top: 30),
-                child: Text('Address:',
+                child: Text('Address: $user_location',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -153,6 +147,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
               ),
             ],
           ),
+            /*
             Padding(
               padding: const EdgeInsets.only(left:30),
               child: TextField(
@@ -163,9 +158,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
                 controller: addressTextEditingController,
               ),
             ),
-              
-            
-          
+             */
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: ElevatedButton.icon(
@@ -204,9 +197,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
               ),
             ],
           ),
-        
-           const  Text('location'),
-          
+          const Text('location'),
           const Text('Stopwatch:'),
         (Text('$digitHours:$digitMinutes:$digitSeconds')),
           ElevatedButton(
@@ -252,8 +243,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
               child: const Text('next')
               )
         ],
-      ),
+      )
     );
   }
-
 }

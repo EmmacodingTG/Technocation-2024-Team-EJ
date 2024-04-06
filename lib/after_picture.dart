@@ -76,8 +76,7 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
                 user_after_image = '${file.path}';
                 print('${file.path}');
             
-                String uniqueFileName =
-                    DateTime.now().millisecondsSinceEpoch.toString();
+                String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
                 Reference referenceRoot = FirebaseStorage.instance.ref();
                 Reference referenceDirImages = referenceRoot.child('images');
                 Reference referenceImageToUpload =
