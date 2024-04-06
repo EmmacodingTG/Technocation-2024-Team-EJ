@@ -1,16 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:litter_app/find_location_page.dart';
-import 'package:litter_app/signup_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:litter_app/find_location_page.dart';
+
 import 'package:litter_app/stopwatch_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'clean_page.dart';
 import 'login_page.dart';
-import 'stopwatch_page.dart';
 
 String contact_email = '';
 int length_records = 0;
@@ -40,7 +36,7 @@ class _SendPageState extends State<SendPage> {
     var message = "Hello, this is a message about " +
         usernameControllertext +
         " 's cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
-    var message2 = 'Address:' + address;
+    var message2 = 'Address:';
     var message3 = 'Cleaning date: ';
     var message4 = 'Total cleaning time: $user_time';
     var message5 =
@@ -59,6 +55,7 @@ class _SendPageState extends State<SendPage> {
 
     String fullmessage = messageperiode +
         message2 +
+        address +
         Enter +
         message3 +
         DateTimeString +

@@ -84,7 +84,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
               onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CleanPage(),
+                      builder: (context) => const FirstPage(),
                     ),
                   )),
           title: const Text('Find A Park'),

@@ -9,10 +9,11 @@ String user_time = '';
 
 String time = '';
 String date ='';
+
+String address = addressTextEditingController.text;
   final addressTextEditingController =
       TextEditingController();
-String address = addressTextEditingController.text;
-
+     
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
 
@@ -242,12 +243,14 @@ class _StopwatchPageState extends State<StopwatchPage> {
           ElevatedButton(
               onPressed: () {
                 user_time = '$digitHours hours and $digitMinutes minutes';
+                print(address);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AfterPicturePage()));
               },
-              child: const Text('next'))
+              child: const Text('next')
+              )
         ],
       ),
     );
