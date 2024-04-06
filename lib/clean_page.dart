@@ -5,6 +5,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'before_picture_page.dart';
 
+
+String user_location = '';
+String user_before_image = '';
+String user_after_image = '';
+
 class CleanPage extends StatefulWidget {
   const CleanPage({super.key});
 
@@ -170,12 +175,16 @@ class _CleanPageState extends State<CleanPage> {
                                     width: 90,
                                   ),
                                   TextButton(
-                                    onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const BeforePicturePage(),
-                                      ),
-                                    ),
+                                    onPressed: () {
+                                      user_location = locationController.text;
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (
+                                              context) => const BeforePicturePage(),
+                                        ),
+                                      );
+                                    },
                                     child: const Text('Continue'),
                                   ),
                                   const SizedBox(

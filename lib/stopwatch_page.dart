@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:litter_app/after_picture.dart';
 
 
+String user_time = '';
+
+
 String time = '';
 String date ='';
+
 
 
 class StopwatchPage extends StatefulWidget {
@@ -237,7 +241,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
               child: const Text('reset')),
           ElevatedButton(
               onPressed: () {
-                time = '$digitHours hours and $digitMinutes minutes';
+                user_time = '$digitHours hours and $digitMinutes minutes';
                 Navigator.push(
                     context,
                     MaterialPageRoute(
