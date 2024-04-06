@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +23,9 @@ class RecordsDisplay extends StatelessWidget {
             const Text('volunteered time:'),
             Text(record_volunteered_time),
             const Text('before image:'),
-            Image.network(record_before_image),
+            Image.file(new File(record_before_image)),
             const Text('after image:'),
-            Image.network(record_after_image)
+            Image.file(new File(record_after_image))
           ],
         ));
   }
