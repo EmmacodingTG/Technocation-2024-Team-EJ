@@ -253,7 +253,7 @@ class InfoPage extends StatelessWidget {
           const SizedBox(
                 width: 60,
               ),
-               Text('#5 = Bad'),
+               const Text('#5 = Bad'),
                const SizedBox(
                 width: 5,
               ),

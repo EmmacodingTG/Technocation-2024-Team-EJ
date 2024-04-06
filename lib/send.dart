@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:litter_app/find_location_page.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -120,8 +120,8 @@ class _SendPageState extends State<SendPage> {
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: Color.fromARGB(146, 122, 228, 150),
-                      content: Text('Now displayed in records'),
+                      backgroundColor:const  Color.fromARGB(146, 122, 228, 150),
+                      content: const Text('Now displayed in records'),
                       action: SnackBarAction(
                         label: 'Update Littery Severity',
                         onPressed: () => Navigator.push(

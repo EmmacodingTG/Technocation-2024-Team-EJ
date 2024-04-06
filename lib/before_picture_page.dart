@@ -22,7 +22,7 @@ class _BeforePicturePageState extends State<BeforePicturePage> {
   @override
 void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => DatePage()),
+    MaterialPageRoute(builder: (context) =>const DatePage()),
   );
 }
  String imageUrl ='';
@@ -55,9 +55,9 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
           ),
           Row(
             children: [
-              SizedBox(width: 75),
+             const  SizedBox(width: 75),
               Text(contact_email),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               InkWell(
                 onTap: () async {
                   FlutterClipboard.copy(contact_email);
@@ -93,7 +93,7 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => StopwatchPage())
+                MaterialPageRoute(builder: (context) => const StopwatchPage())
               );
             },
             label: const Text('NEXT'),

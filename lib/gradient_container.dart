@@ -22,7 +22,7 @@ class GradientContainer extends StatelessWidget {
                 'assets/images/logo-removebg-preview.png',
                 width: 330
               ),
-            SizedBox(height: 30,),
+           const  SizedBox(height: 30,),
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Stack(
