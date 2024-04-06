@@ -69,29 +69,29 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(labelText: 'Name'),
               controller: community_sponsor_nameController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
               controller: community_sponsor_emailController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Phone Number'),
+              decoration:const  InputDecoration(labelText: 'Phone Number'),
               controller: community_sponsor_phoneController,
             ),
           ),
@@ -117,7 +117,7 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          content: Text('Are you sure the information is correct?'),
+                          content: const Text('Are you sure the information is correct?'),
                           actions: [
                             TextButton(onPressed: () async {
                               // store in Firebase
@@ -166,12 +166,12 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
 
                               Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => LocationSelectPage())
+                                  MaterialPageRoute(builder: (context) => const LocationSelectPage())
                               );
-                            }, child: Text('yes')),
+                            }, child: const Text('yes')),
                             TextButton(onPressed: () {
                               Navigator.pop(context);
-                            }, child: Text('no'))
+                            }, child: const Text('no'))
                           ],
                         )
                     ); // showDialog

@@ -43,29 +43,29 @@ class _SignupPageState extends State<SignupPage> {
             children: [],
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Username'),
+              decoration: const InputDecoration(labelText: 'Username'),
               controller: usernameController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding:const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration:const InputDecoration(labelText: 'Password'),
               controller: passwordController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding:const EdgeInsets.all(
               40.0,
             ),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Confirm password'),
+              decoration:const InputDecoration(labelText: 'Confirm password'),
               controller: confirm_passwordController,
             ),
           ),
@@ -119,13 +119,13 @@ class _SignupPageState extends State<SignupPage> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            content: Text('Please fill in all fields.'),
+                            content:const Text('Please fill in all fields.'),
                             actions: [
                               TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('Okay'))
+                                  child: const Text('Okay'))
                             ],
                           ));
                     } // end if
@@ -133,13 +133,13 @@ class _SignupPageState extends State<SignupPage> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            content: Text('Confirm password does not match password.'),
+                            content:const Text('Confirm password does not match password.'),
                             actions: [
                               TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('Okay')
+                                  child:const Text('Okay')
                               )
                             ], // actions
                           )
@@ -159,13 +159,13 @@ class _SignupPageState extends State<SignupPage> {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              content: Text('Username taken.'),
+                              content: const Text('Username taken.'),
                               actions: [
                                 TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Okay'))
+                                    child:const Text('Okay'))
                               ],
                             )
                         ); // showDialog
@@ -175,7 +175,7 @@ class _SignupPageState extends State<SignupPage> {
                         password = passwordController.text;
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => CommunitySponsorPage())
+                            MaterialPageRoute(builder: (context) => const CommunitySponsorPage())
                         );
                       } // end else
                     } // else

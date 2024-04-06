@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/firestore.dart';
 import 'package:clipboard/clipboard.dart';
-import 'package:litter_app/clean_page.dart';
+
 
 import 'first_page.dart';
 
@@ -47,7 +47,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CleanPage(),
+                          builder: (context) => const FirstPage(),
                         ),
                       );
                     },
@@ -78,7 +78,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(146, 21, 125, 49),
           leading: IconButton(
-              icon: Icon(Icons.location_on),
+              icon:const Icon(Icons.location_on),
               iconSize: 50,
               onPressed: () => Navigator.push(
                     context,
@@ -98,10 +98,10 @@ class _FindLocationPageState extends State<FindLocationPage> {
           stream: _userStream,
           builder: (context, snapshot) {
             if (snapshot.hasError) { 
-              return Text('Error');
+              return const Text('Error');
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text('Error');
+              return const Text('Error');
             }
             var docs = snapshot.data!.docs;
 
@@ -116,7 +116,7 @@ class _FindLocationPageState extends State<FindLocationPage> {
                       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                         IconButton(
                           onPressed: () => openNoteBox(docID: docID),
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete),
