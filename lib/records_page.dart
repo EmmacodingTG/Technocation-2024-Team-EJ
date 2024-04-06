@@ -45,6 +45,15 @@ class _RecordsPageState extends State<RecordsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          
+          backgroundColor: const Color.fromARGB(146, 21, 125, 49),
+            leading: IconButton(
+              icon:const Icon(Icons.history),
+              iconSize: 50,onPressed: () {},),
+          title: const Text('Records/History'),
+        ),
+       
         backgroundColor: Colors.white,
         body: 
              FirebaseAnimatedList(
