@@ -1,10 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:litter_app/jay/signup_page.dart';
-import '../main.dart';
+import 'package:litter_app/signup_page.dart';
+import 'main.dart';
 import 'location_select.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'login_page.dart';
+
+DatabaseReference ref = FirebaseDatabase.instance.ref();
 
 class CommunitySponsorPage extends StatefulWidget {
   const CommunitySponsorPage({super.key});
@@ -153,6 +155,12 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
                                   }),
                               );
                               launchUrl(uri);
+
+                              // save contact email
+                              final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
+                              if (snapshot_email.exists){
+                                contact_email = snapshot_email.value as String;
+                              }
 
                               // navigate to next screen
 

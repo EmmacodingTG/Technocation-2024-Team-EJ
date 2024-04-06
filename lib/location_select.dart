@@ -1,16 +1,16 @@
-/*
-import 'package:litter_app/navigator_bar.dart';
-
 import 'package:flutter/material.dart';
-var torontoorwaterloo = 'HI';
-class SignUpMapPage extends StatefulWidget {
-  const SignUpMapPage({super.key});
+import 'package:litter_app/first_page.dart';
+
+String torontoorwaterloo = '';
+
+class LocationSelectPage extends StatefulWidget {
+  const LocationSelectPage({super.key});
 
   @override
-  State<SignUpMapPage> createState() => _SignupMapPageState();
+  State<LocationSelectPage> createState() => _LocationSelectState();
 }
 
-class _SignupMapPageState extends State<SignUpMapPage> {
+class _LocationSelectState extends State<LocationSelectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +53,14 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: (){torontoorwaterloo = 'BYE';},
-
+                        onPressed: (){
+                          torontoorwaterloo = 'Toronto, ON';
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FirstPage())
+                          );
+                          },
+                       
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 5),
                           foregroundColor: const Color.fromARGB(221, 0, 0, 0),
@@ -96,8 +102,14 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                         ),
                       ),
                       TextButton(
-                       onPressed: (){torontoorwaterloo = 'HI';},
-
+                       onPressed: (){
+                         torontoorwaterloo = 'Waterloo, ON';
+                         Navigator.push(
+                             context,
+                             MaterialPageRoute(builder: (context) => FirstPage())
+                         );
+                         },
+                        
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 5),
                           foregroundColor: const Color.fromARGB(221, 0, 0, 0),
@@ -116,12 +128,10 @@ class _SignupMapPageState extends State<SignUpMapPage> {
                 ),
               ],
             ),
-
+            
           ],
         ),
       ),
     );
   }
 }
-
- */

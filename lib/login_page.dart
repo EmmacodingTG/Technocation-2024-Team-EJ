@@ -1,10 +1,11 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:litter_app/jay/location_select.dart';
-import 'package:litter_app/jay/signup_page.dart';
+import 'package:litter_app/location_select.dart';
+import 'package:litter_app/signup_page.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
+import 'main.dart';
 
 int user_index = 0;
+String contact_email = '';
 DatabaseReference ref = FirebaseDatabase.instance.ref();
 
 class LoginPage extends StatefulWidget {
@@ -134,6 +135,10 @@ class _LoginPageState extends State<LoginPage> {
                             if (passwordController.text == snapshot_user_password.value) {
                               username_correct = true;
                               user_index = i;
+                              final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
+                              if (snapshot_email.exists){
+                                contact_email = snapshot_email.value as String;
+                              }
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => LocationSelectPage())

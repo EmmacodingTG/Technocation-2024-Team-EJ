@@ -1,8 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/jay/after_picture.dart';
+import 'package:litter_app/after_picture.dart';
+
+String time = '';
 
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
@@ -120,6 +121,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
           ),
           ElevatedButton(
               onPressed: () {
+                time = '$digitHours hours and $digitMinutes minutes';
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AfterPicturePage())

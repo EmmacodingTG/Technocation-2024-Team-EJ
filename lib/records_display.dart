@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/jay/records_page.dart';
+import 'package:litter_app/records_page.dart';
 
 DatabaseReference ref = FirebaseDatabase.instance.ref();
 

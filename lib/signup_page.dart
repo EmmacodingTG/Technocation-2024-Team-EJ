@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:litter_app/jay/login_page.dart';
-import '../main.dart';
+import 'package:litter_app/login_page.dart';
+import 'main.dart';
 import 'community_sponsor.dart';
 import 'package:flutter/material.dart';
 

@@ -1,12 +1,10 @@
-// this page is used in the community sponsor page
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/jay/navigator_bar.dart';
-
+import 'package:litter_app/find_location_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:litter_app/jay/global_variable.dart';
+import 'login_page.dart';
+
+String contact_email = '';
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -16,6 +14,10 @@ class SendPage extends StatefulWidget {
 }
 
 class _SendPageState extends State<SendPage> {
+
+  DateTime? selectedDate;
+  final TextEditingController addressTextEditingController = TextEditingController();
+
   String? encodeQueryParameters(Map<String, String> params) {
     return params.entries
         .map((MapEntry<String, String> e) =>
@@ -25,16 +27,16 @@ class _SendPageState extends State<SendPage> {
 
   @override
   Widget build(BuildContext context) {
-    // create global variable of timer and contacts ( put contacts email into the recipitent's email )
+    // create global variable of timer and contacts ( put contacts email into the recipient's email )
     
-    var subject = 'Confirmation of litter cleaning';
+    var subject = '';
     var message =
         "Hello, this is a message about________'s cleaning session."; // __ replaced by textediting controller variable of username from login or sign up page
     var message2 = 'Address:';
     var message3 = 'Cleaning date:  ';
     var message4 = 'Total Cleaning Time:  ';
     var message5 =
-        'Images of this volunteer activity was sent previously within two seperate emails. Please check your inbox!)';
+        'Images of this volunteer activity was sent previously within two separate emails. Please check your inbox!)';
     var message6 =
         'Please confirm this volunteer.\n\nThank you!\n\n From: LITTER APP';
     var Enter = '\n\n';
@@ -91,10 +93,14 @@ class _SendPageState extends State<SendPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 50),
               child: ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
+                  final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
+                  if (snapshot_email.exists){
+                    contact_email = snapshot_email.value as String;
+                  }
                   Uri uri = Uri(
                     scheme: 'mailto',
-                    path: contactemail,
+                    path: contact_email,
                     query: encodeQueryParameters(<String, String>{
                       'subject': subject,
                       'body': fullmessage 
@@ -117,18 +123,18 @@ class _SendPageState extends State<SendPage> {
                       backgroundColor: Color.fromARGB(146, 122, 228, 150),
                       content: Text('Now displayed in records'),
                       action: SnackBarAction(
-                        label: 'DONE',
+                        label: 'Update Littery Severity',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const NavigatorBar(),
+                            builder: (context) => const FindLocationPage(),
                           ),
                         ),
                       ),
                     ),
                   );
                 },
-                label: const Text('DONE'),
+                label: const Text('Done'),
                 icon: const Icon(Icons.done),
               ),
             ),

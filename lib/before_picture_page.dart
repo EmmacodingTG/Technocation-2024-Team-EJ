@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:litter_app/jay/stopwatch_page.dart';
-import 'timer_page.dart';
-import 'global_variable.dart';
+import 'package:litter_app/send.dart';
+import 'package:litter_app/stopwatch_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+import 'date_page.dart';
 
 class BeforePicturePage extends StatefulWidget {
   const BeforePicturePage({super.key});
@@ -13,14 +15,17 @@ class BeforePicturePage extends StatefulWidget {
   State<BeforePicturePage> createState() => _BeforePicturePageState();
 }
 class _BeforePicturePageState extends State<BeforePicturePage> {
-  
+
+  DateTime? selectedDate;
+  final TextEditingController addressTextEditingController = TextEditingController();
+
   @override
 void navigateToTimerPage(BuildContext context) {addressTextEditingController.clear(); Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => TimerPage()),
+    MaterialPageRoute(builder: (context) => DatePage()),
   );
 }
-
+ String imageUrl ='';
   Widget build(BuildContext context) {
    return Scaffold(
       backgroundColor: Colors.white,
@@ -50,26 +55,38 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
           ),
           Row(
             children: [
-            SizedBox(width: 75,),
-             Text(contactemail),
-             SizedBox(width: 15,),
+              SizedBox(width: 75),
+              Text(contact_email),
+              SizedBox(width: 15),
               InkWell(
-                onTap: () {
-                  FlutterClipboard.copy(contactemail);
+                onTap: () async {
+                  FlutterClipboard.copy(contact_email);
                 },
                 child: const Icon(Icons.copy),
               ),
             ],
           ),
-          IconButton(
+         IconButton(
               icon: const Icon(Icons.photo_camera),
               iconSize: 100,
               onPressed: () async {
-                final image =
+                final file =
                     await ImagePicker().pickImage(source: ImageSource.camera);
-                if (image == null) return;
-                await Share.shareFiles([image.path],
+                if (file == null) return;
+                await Share.shareFiles([file.path],
                     subject: 'Hello', text: 'THIS IS THE IMAGE!!');
+                print('${file.path}');
+            
+                String uniqueFileName =
+                    DateTime.now().millisecondsSinceEpoch.toString();
+                Reference referenceRoot = FirebaseStorage.instance.ref();
+                Reference referenceDirImages = referenceRoot.child('images');
+                Reference referenceImageToUpload =
+                    referenceDirImages.child(uniqueFileName);
+                try {
+                  await referenceImageToUpload.putFile(File(file.path));
+                 imageUrl= await referenceImageToUpload.getDownloadURL();
+                } catch (error) {}
               }),
      
           ElevatedButton.icon(

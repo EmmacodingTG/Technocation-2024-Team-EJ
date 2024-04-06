@@ -1,17 +1,18 @@
-import 'package:litter_app/jay/global_variable.dart';
 import 'package:flutter/material.dart';
-import 'package:litter_app/jay/after_picture.dart';
+import 'after_picture.dart';
 
-class TimerPage extends StatefulWidget {
-  const TimerPage({super.key});
+class DatePage extends StatefulWidget {
+  const DatePage({super.key});
 
   @override
-  State<TimerPage> createState() => _TimerPageState();
+  State<DatePage> createState() => _DatePageState();
 }
 
-class _TimerPageState extends State<TimerPage> {
+class _DatePageState extends State<DatePage> {
 
   DateTime _dateTime = DateTime.now();
+  DateTime? selectedDate;
+  final TextEditingController addressTextEditingController = TextEditingController();
 
 void _showDatePicker() {
   showDatePicker(
