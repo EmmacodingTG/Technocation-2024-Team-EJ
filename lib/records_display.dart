@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -11,7 +12,10 @@ class RecordsDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(146, 21, 125, 49),
+          
           title: const Text('records display'),
         ),
         body: Column(
@@ -22,11 +26,25 @@ class RecordsDisplay extends StatelessWidget {
             Text(record_date),
             const Text('volunteered time:'),
             Text(record_volunteered_time),
-            const Text('before image:'),
-            Image.file(new File(record_before_image)),
-            const Text('after image:'),
-            Image.file(new File(record_after_image))
-          ],
+            Row(
+              children: [
+SizedBox(width:20),
+               Column(
+                 children: [
+                   const Text('before image:'),
+                 Image.file(File(record_before_image),
+      width: 170,),    ],
+               ),
+          SizedBox(width:20)    ,
+         
+            Column(
+              children: [
+                const Text('after image:'),
+           Image.file( File(record_after_image),width: 170,)   ],
+            ),
+
+            
+        ])  ],
         ));
   }
 }
