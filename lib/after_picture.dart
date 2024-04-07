@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:litter_app/send.dart';
@@ -6,8 +7,11 @@ import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'clean_page.dart';
+import 'login_page.dart';
 
 bool after_image_taken = false;
+int length_records = 0;
+DatabaseReference ref = FirebaseDatabase.instance.ref();
 
 class AfterPicturePage extends StatefulWidget {
   const AfterPicturePage({super.key});
@@ -87,7 +91,7 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
                 } catch (error) {}
               }),
           ElevatedButton.icon(
-            onPressed: () {
+            onPressed: () async {
               if (after_image_taken == false){
                 showDialog(
                   context: context,
@@ -101,6 +105,10 @@ class _AfterPicturePageState extends State<AfterPicturePage> {
                   )
                 );
               } else {
+                var snapshot_records_length = await ref.child('users_list/$user_index/records').get();
+                if (snapshot_records_length.exists) {
+                  length_records = (snapshot_records_length.value).toString().split("{'after_image'").length;
+                }
                 Navigator.push(
                   context, MaterialPageRoute(
                   builder: (context) => const SendPage(),

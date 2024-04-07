@@ -1,10 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:litter_app/first_page.dart';
-
 import 'package:litter_app/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
-
 
 String usernameControllertext = usernameController.text;
  final usernameController = TextEditingController();

@@ -1,11 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:litter_app/first_page.dart';
 import 'package:litter_app/signup_page.dart';
+import 'login_page.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'login_page.dart';
 
+String contact_email = '';
 DatabaseReference ref = FirebaseDatabase.instance.ref();
 
 class CommunitySponsorPage extends StatefulWidget {
@@ -158,7 +159,6 @@ class _CommunitySponsorState extends State<CommunitySponsorPage> {
 
                               // save contact email
                               contact_email = community_sponsor_emailController.text;
-                          
 
                               // navigate to next screen
 
