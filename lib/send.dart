@@ -1,15 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
-
 import 'package:flutter/material.dart';
 import 'package:litter_app/find_location_page.dart';
 import 'package:litter_app/signup_page.dart';
 import 'package:litter_app/stopwatch_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'after_picture.dart';
 import 'clean_page.dart';
 import 'login_page.dart';
-
-String contact_email = '';
-int length_records = 0;
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -83,13 +80,7 @@ class _SendPageState extends State<SendPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 50),
               child: ElevatedButton.icon(
-                onPressed: () async {
-                  final snapshot_email = await ref
-                      .child('users_list/$user_index/community_sponsor_email')
-                      .get();
-                  if (snapshot_email.exists) {
-                    contact_email = snapshot_email.value as String;
-                  }
+                onPressed: () {
                   Uri uri = Uri(
                     scheme: 'mailto',
                     path: contact_email,
@@ -110,16 +101,8 @@ class _SendPageState extends State<SendPage> {
             child: Center(
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  final snapshot_records_length =
-                      await ref.child('users_list/$user_index/records').get();
-                  if (snapshot_records_length.exists) {
-                    length_records = (snapshot_records_length.value)
-                        .toString()
-                        .split("{'after_image'")
-                        .length;
-                  }
                   DatabaseReference records_list = FirebaseDatabase.instance.ref('users_list/$user_index/records');
-                  DatabaseReference new_record = records_list.child('${length_records + 1}');
+                  DatabaseReference new_record = records_list.child('${length_records+clean_ups}');
                   new_record.set({
                     'after_image': user_after_image,
                     'before_image': user_before_image,

@@ -1,14 +1,16 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:litter_app/clean_page.dart';
-import 'package:litter_app/send.dart';
 import 'package:litter_app/stopwatch_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
+import 'after_picture.dart';
+import 'login_page.dart';
 
-
+DatabaseReference ref = FirebaseDatabase.instance.ref();
 bool before_image_taken = false;
 
 class BeforePicturePage extends StatefulWidget {
@@ -94,8 +96,7 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
               }),
      
           ElevatedButton.icon(
-            onPressed: () {
-
+            onPressed: () async {
               if (before_image_taken == false){
                 showDialog(
                   context: context,
@@ -111,17 +112,15 @@ void navigateToTimerPage(BuildContext context) {addressTextEditingController.cle
                   )
                 );
               } else {
+                final snapshot_email = await ref.child('users_list/$user_index/community_sponsor_email').get();
+                if (snapshot_email.exists) {
+                  contact_email = snapshot_email.value as String;
+                }
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => StopwatchPage())
                 );
               }
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const StopwatchPage())
-              );
-
             },
             label: const Text('NEXT'),
             icon: const Icon(Icons.done),
