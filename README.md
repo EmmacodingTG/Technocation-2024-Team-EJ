@@ -23,3 +23,7 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter Cool(2023)Dart/Flutter](https://www.youtube.com/watch?v=S5pBcTlMy_M)
 - [Droidmonk(2022)](https://www.youtube.com/watch?v=u52TWx41oU4&list=LL&index=37&t=932s)
 
+```mermaid
+flowchart LR
+  a --> b
+```
