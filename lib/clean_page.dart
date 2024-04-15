@@ -5,7 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'before_picture_page.dart';
 
-
+int clean_ups = 0;
 String user_location = '';
 String user_before_image = '';
 String user_after_image = '';
@@ -177,6 +177,7 @@ class _CleanPageState extends State<CleanPage> {
                                   TextButton(
                                     onPressed: () {
                                       user_location = locationController.text;
+                                      clean_ups++;
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
